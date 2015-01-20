@@ -11,7 +11,7 @@ public class EnableTraps : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//this.isEnable = true;
-		if(Random.value > 0.5){
+		if(Random.value > 0.4){
 			this.isEnable = true;
 			this.collider.enabled = true;
 			this.renderer.enabled = true;
@@ -25,6 +25,22 @@ public class EnableTraps : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision info){
+		
+		this.fireTrap (info);
+			
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit info){
+		Debug.Log ("Colision");
+	}
+
+	void OnTriggerEnter(Collider info){
+	
+		this.fireTrap(info);
+	}
+
+
+	public void fireTrap(Collider info){
 		Debug.Log ("Colision con:" + this.trap.tag);
 		if (this.isEnable) {
 			switch(this.trap.tag){
@@ -64,10 +80,47 @@ public class EnableTraps : MonoBehaviour {
 					break;
 			}
 		}
-			
 	}
 
-	void OnControllerColliderHit(ControllerColliderHit info){
-		Debug.Log ("Colision");
+	public void fireTrap(Collision info){
+		Debug.Log ("Colision con:" + this.trap.tag);
+		if (this.isEnable) {
+			switch(this.trap.tag){
+			case "Ball":
+				trap.rigidbody.isKinematic = false;
+				this.isEnable = false;
+				this.audio.Play();
+				break;
+				
+			case "Trampoline":
+				info.rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
+				this.isEnable = false;
+				this.audio.Play();
+				break;
+				
+			case "Tree":
+				Debug.Log ("Ha entrado en el Tree");
+				//trap.rigidbody.isKinematic = false; // No funciona bien 
+				trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
+				this.isEnable = false;
+				this.audio.Play();
+				break;
+				
+			case "Explosion":
+				Debug.Log("Ha explotado");
+				Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 5F);
+				int i = 0;
+				while (i < hitColliders.Length) {
+					if(hitColliders[i].rigidbody){
+						hitColliders[i].rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
+						hitColliders[i].rigidbody.freezeRotation = false;	
+					}
+					i++;
+				}
+				this.isEnable = false;
+				this.audio.Play();
+				break;
+			}
+		}
 	}
 }

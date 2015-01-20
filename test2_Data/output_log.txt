@@ -1,0 +1,144 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7800 Series (ID=0x6818)
+    Vendor:   ATI
+    VRAM:     2027 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\projects\CrossRoad\test2_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\projects\CrossRoad\test2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading E:\projects\CrossRoad\test2_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.062 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 3.636930 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 775.
+Total: 1.908548 ms (FindLiveObjects: 0.060482 ms CreateObjectMapping: 0.017280 ms MarkObjects: 0.280650 ms  DeleteObjects: 0.782108 ms)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va +horizontal y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallBallTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallExplosionTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTrampolineTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTrampolineTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTurnLeft(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallBallTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Wall(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTurnLeft(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Wall(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTrampolineTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Wall(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTurnLeft(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallExplosionTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTurnLeft(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTurnLeft(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallBallTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallTrampolineTrap(Clone) (UnityEngine.Transform)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 1.425971 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 471 unused Assets to reduce memory usage. Loaded Objects now: 322.
+Total: 2.160717 ms (FindLiveObjects: 0.026240 ms CreateObjectMapping: 0.019200 ms MarkObjects: 0.233928 ms  DeleteObjects: 1.167081 ms)
+

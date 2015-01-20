@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class RayCastDetectWalls : MonoBehaviour {
 	/****
@@ -21,6 +22,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 	public Transform finalWall;
 	// Determina si estamos en test o no
 	public bool isTest;
+	public FallDown list;
 
 
 	// Rotacion de los muros que tienen trampas
@@ -44,12 +46,19 @@ public class RayCastDetectWalls : MonoBehaviour {
 	private bool positionHorizontal;
 	// Use this for initialization
 
+	private Transform[] Objects;
+
+	void Awake(){
+
+	}
+
 	void Start () {
 
 		if (!this.isTest)
 			this.numberOfWalls = PlayerPrefs.GetInt ("walls");
-
-
+		int total = this.numberOfWalls + 2;
+		this.Objects = new Transform[total];
+		//this.objects = new Dictionary<int, GameObject> ();
 		this.sum = 10;
 		// Es false porque en un principio el inicio es vertical
 		this.horizontal = false;
@@ -106,7 +115,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 				}
 
 				// Se clona el muro
-				Instantiate (this.wallToTurn, this.position, this.rotationTurn);
+				this.Objects[i] = (Transform)Instantiate (this.wallToTurn, this.position, this.rotationTurn);
 
 
 			}else{
@@ -114,7 +123,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 				int wall = Random.Range(0,walls.Length);
 
 				// Se clona el muro
-				Instantiate (this.walls[wall], this.position, this.rotationWalls);
+				this.Objects[i] = (Transform)Instantiate (this.walls[wall], this.position, this.rotationWalls);
 				// Guardo la ultima posicion
 				if(this.start)
 					this.start = false;
@@ -137,13 +146,14 @@ public class RayCastDetectWalls : MonoBehaviour {
 
 
 		}
-		Instantiate (this.finalWall, this.position, this.rotationWalls);
+		int test = this.numberOfWalls + 1;
+		this.Objects[test] = (Transform)Instantiate (this.finalWall, this.position, this.rotationWalls);
 
 		// Pongo el canvas y el texto en el componente del finalWall
 		//this.finalWallInstantiate.GetComponent<StartRayCast> ().textWinner = this.textWinner;
 		//this.finalWallInstantiate.GetComponent<StartRayCast> ().canvasWinner = this.canvasWinner;
-
-
+		this.list.objects = this.Objects;
+		//Debug.Log (this.Objects[1].rigidbody.isKinematic);
 		// Destruye este objeto cuando haya terminado
 		Destroy(this.gameObject);
 

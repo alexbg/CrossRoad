@@ -23,6 +23,7 @@ public class MoveCharacter : MonoBehaviour {
 	private float time;
 	private bool tired;
 	private float maxVelocity;
+	private RaycastHit info;
 	// Use this for initialization
 	void Start () {
 		Screen.showCursor = false;
@@ -88,10 +89,12 @@ public class MoveCharacter : MonoBehaviour {
 		}
 		// Test rayCast
 
-		/*if(Physics.Raycast(this.transform.position,-transform.up,1.0f) && !this.canJump){
-			this.canJump = true;
-			this.rigidbody.drag = 2;
-		}*/
+		if(Physics.Raycast(this.transform.position,-transform.up,1.0f) && !this.canJump){
+			if(!this.canJump){
+				this.canJump = true;
+				this.rigidbody.drag = 2;
+			}
+		}
 	}
 
 	void FixedUpdate(){
@@ -137,13 +140,20 @@ public class MoveCharacter : MonoBehaviour {
 
 		}
 	}
+	// COLISIONES
 
+	// Se usan ambos porque los muros tienen el rigidbody en kinematic
+	// los kinematic detectan colisiones con los objetos que son trigger, ya que no les
+	// deberian de afectar las fisicas. Los botones de las trampas son triggers
+	// Esto se hace para que el conjunto(los muros las trampas) sean kinematic y poder desactivarlo
+	// para que se caiga por la gravedad
 	void OnCollisionEnter(Collision info) {
 		//this.canJump = true;
-		if(info.gameObject.tag == "Ground" || info.gameObject.tag == "Trap"){
+		/*if(info.gameObject.tag == "Ground" || info.gameObject.tag == "Trap"){
 			this.canJump = true;
 			this.rigidbody.drag = 2;
-		}
+		}*/
+
 		switch(info.gameObject.tag){
 			case "Ball":
 				this.rigidbody.freezeRotation = false;
@@ -159,6 +169,30 @@ public class MoveCharacter : MonoBehaviour {
 				break;
 		}
 
+	}
+
+	void OnTriggerEnter(Collider info){
+		
+		//this.canJump = true;
+		/*if(info.gameObject.tag == "Ground" || info.gameObject.tag == "Trap"){
+			this.canJump = true;
+			this.rigidbody.drag = 2;
+		}*/
+
+		switch(info.gameObject.tag){
+		case "Ball":
+			this.rigidbody.freezeRotation = false;
+			break;
+		case "Explosion":
+			this.rigidbody.freezeRotation = false;
+			break;
+		case "Trampoline":
+			this.rigidbody.freezeRotation = false;
+			break;
+		case "Tree":
+			this.rigidbody.freezeRotation = false;
+			break;
+		}
 	}
 
 	void OnCollisionStay(Collision info) {
