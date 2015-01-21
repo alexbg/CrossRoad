@@ -20,19 +20,19 @@ public class EnableTraps : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		
-	}
+	}*/
 
-	void OnCollisionEnter(Collision info){
+	/*void OnCollisionEnter(Collision info){
 		
 		this.fireTrap (info);
 			
-	}
+	}*/
 
-	void OnControllerColliderHit(ControllerColliderHit info){
+	/*void OnControllerColliderHit(ControllerColliderHit info){
 		Debug.Log ("Colision");
-	}
+	}*/
 
 	void OnTriggerEnter(Collider info){
 	
@@ -51,6 +51,7 @@ public class EnableTraps : MonoBehaviour {
 					break;
 
 				case "Trampoline":
+					info.rigidbody.freezeRotation = false;
 					info.rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
 					this.isEnable = false;
 					this.audio.Play();
@@ -70,8 +71,8 @@ public class EnableTraps : MonoBehaviour {
 					int i = 0;
 					while (i < hitColliders.Length) {
 						if(hitColliders[i].rigidbody){
-							hitColliders[i].rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
-							hitColliders[i].rigidbody.freezeRotation = false;	
+							hitColliders[i].rigidbody.freezeRotation = false;
+							hitColliders[i].rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);	
 						}
 						i++;
 					}
@@ -82,7 +83,7 @@ public class EnableTraps : MonoBehaviour {
 		}
 	}
 
-	public void fireTrap(Collision info){
+	/*public void fireTrap(Collision info){
 		Debug.Log ("Colision con:" + this.trap.tag);
 		if (this.isEnable) {
 			switch(this.trap.tag){
@@ -122,5 +123,5 @@ public class EnableTraps : MonoBehaviour {
 				break;
 			}
 		}
-	}
+	}*/
 }

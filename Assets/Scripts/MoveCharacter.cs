@@ -87,7 +87,7 @@ public class MoveCharacter : MonoBehaviour {
 			this.audio.Stop();
 
 		}
-		// Test rayCast
+		// Permite saber si puedes saltar o no
 
 		if(Physics.Raycast(this.transform.position,-transform.up,1.0f) && !this.canJump){
 			if(!this.canJump){
@@ -142,68 +142,47 @@ public class MoveCharacter : MonoBehaviour {
 	}
 	// COLISIONES
 
-	// Se usan ambos porque los muros tienen el rigidbody en kinematic
-	// los kinematic detectan colisiones con los objetos que son trigger, ya que no les
-	// deberian de afectar las fisicas. Los botones de las trampas son triggers
-	// Esto se hace para que el conjunto(los muros las trampas) sean kinematic y poder desactivarlo
-	// para que se caiga por la gravedad
+	// Comprobar si es mejor que el personaje active las trampas y las fisicas
+	// Es collisionEnter y no trigger porque la bola tiene un rigidbody, asiq niega el rigidbody del padre
+	// y utiliza el suyo propio
 	void OnCollisionEnter(Collision info) {
-		//this.canJump = true;
-		/*if(info.gameObject.tag == "Ground" || info.gameObject.tag == "Trap"){
-			this.canJump = true;
-			this.rigidbody.drag = 2;
-		}*/
-
-		switch(info.gameObject.tag){
+		Debug.Log ("Ha colisionado con el personaje No trigger:" + info.collider.tag);
+		switch(info.collider.tag){
 			case "Ball":
 				this.rigidbody.freezeRotation = false;
 				break;
-			case "Explosion":
-				this.rigidbody.freezeRotation = false;
-				break;
-			case "Trampoline":
-				this.rigidbody.freezeRotation = false;
-				break;
+
 			case "Tree":
 				this.rigidbody.freezeRotation = false;
 				break;
 		}
-
 	}
 
-	void OnTriggerEnter(Collider info){
-		
-		//this.canJump = true;
-		/*if(info.gameObject.tag == "Ground" || info.gameObject.tag == "Trap"){
-			this.canJump = true;
-			this.rigidbody.drag = 2;
-		}*/
-
-		switch(info.gameObject.tag){
+	/*void OnTriggerEnter(Collider info){
+		Debug.Log ("Ha colisionado con el personaje Trigger:" + info.transform.tag);
+		switch(info.collider.tag){
 		case "Ball":
 			this.rigidbody.freezeRotation = false;
 			break;
-		case "Explosion":
-			this.rigidbody.freezeRotation = false;
-			break;
-		case "Trampoline":
-			this.rigidbody.freezeRotation = false;
-			break;
+			
 		case "Tree":
 			this.rigidbody.freezeRotation = false;
 			break;
 		}
-	}
+	}*/
 
-	void OnCollisionStay(Collision info) {
+	/*void OnCollisionStay(Collision info) {
 		//this.canJump = true;
-	}
+	}*/
 
 	public void back(){
 		this.menu.enabled = false;
 		this.toggleMouse();
 	}
 
+	/// <summary>
+	/// Toggles the mouse.
+	/// </summary>
 	public void toggleMouse(){
 		if(this.mouseHead.enabled)
 			this.mouseHead.enabled = false;
@@ -239,6 +218,9 @@ public class MoveCharacter : MonoBehaviour {
 	}
 
 	// Termina la partida
+	/// <summary>
+	/// Ends the game.
+	/// </summary>
 	public void endGame(){
 		this.winnerText.enabled = true;
 		this.menu.enabled = true;

@@ -16,17 +16,17 @@ Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\Assembly-UnityScript
 Loading E:\projects\CrossRoad\test2_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\projects\CrossRoad\test2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.062 seconds
+- Completed reload, in  0.067 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\projects\CrossRoad\test2_Data\Managed\System.dll (this message is harmless)
-UnloadTime: 3.636930 ms
+UnloadTime: 4.191830 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 775.
-Total: 1.908548 ms (FindLiveObjects: 0.060482 ms CreateObjectMapping: 0.017280 ms MarkObjects: 0.280650 ms  DeleteObjects: 0.782108 ms)
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 832.
+Total: 1.922948 ms (FindLiveObjects: 0.101123 ms CreateObjectMapping: 0.020480 ms MarkObjects: 0.292810 ms  DeleteObjects: 0.706265 ms)
 
 Es true, va vertical y gira a la derecha
  
@@ -52,93 +52,255 @@ Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Colision con:Ball
+Es true, va vertical y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallBallTrap(Clone) (UnityEngine.Transform)
+Es true, va -horizontal y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallExplosionTrap(Clone) (UnityEngine.Transform)
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTrampolineTrap(Clone) (UnityEngine.Transform)
+Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Colision con:Ball
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTrampolineTrap(Clone) (UnityEngine.Transform)
+Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTurnLeft(Clone) (UnityEngine.Transform)
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallBallTrap(Clone) (UnityEngine.Transform)
+Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Wall(Clone) (UnityEngine.Transform)
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTurnLeft(Clone) (UnityEngine.Transform)
+Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Colision con:Ball
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Wall(Clone) (UnityEngine.Transform)
+Es true, va +horizontal y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Colision con:Ball
+Es true, va vertical y gira a la derecha
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTrampolineTrap(Clone) (UnityEngine.Transform)
+Es true, va -horizontal y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Wall(Clone) (UnityEngine.Transform)
+Es false, va vertical y gira a la izquierda
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTurnLeft(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Untagged
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallExplosionTrap(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Untagged
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTurnLeft(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Ground
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTurnLeft(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Ground
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallBallTrap(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Ground
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-WallTrampolineTrap(Clone) (UnityEngine.Transform)
+Ha colisionado con el personaje No trigger:Ground
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 1.425971 ms
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Explosion
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha explotado
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 12.160436 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 471 unused Assets to reduce memory usage. Loaded Objects now: 322.
-Total: 2.160717 ms (FindLiveObjects: 0.026240 ms CreateObjectMapping: 0.019200 ms MarkObjects: 0.233928 ms  DeleteObjects: 1.167081 ms)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 833.
+Total: 1.008996 ms (FindLiveObjects: 0.025280 ms CreateObjectMapping: 0.020160 ms MarkObjects: 0.269449 ms  DeleteObjects: 0.004800 ms)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va +horizontal y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va +horizontal y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va +horizontal y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va -horizontal y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va +horizontal y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Es true, va vertical y gira a la derecha
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Explosion
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha explotado
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ground
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 13.660009 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 518 unused Assets to reduce memory usage. Loaded Objects now: 374.
+Total: 2.294162 ms (FindLiveObjects: 0.034241 ms CreateObjectMapping: 0.021440 ms MarkObjects: 0.272329 ms  DeleteObjects: 1.231724 ms)
 

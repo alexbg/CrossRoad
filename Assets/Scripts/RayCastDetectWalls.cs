@@ -22,6 +22,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 	public Transform finalWall;
 	// Determina si estamos en test o no
 	public bool isTest;
+	// Alamacena todos los GameObject que se han creado
 	public FallDown list;
 
 
@@ -56,6 +57,8 @@ public class RayCastDetectWalls : MonoBehaviour {
 
 		if (!this.isTest)
 			this.numberOfWalls = PlayerPrefs.GetInt ("walls");
+		// Si le pongo +1 se queda fuera del rango porque empieza en el 1 en vez del 0,
+		// por lo que el 0 no se usa
 		int total = this.numberOfWalls + 2;
 		this.Objects = new Transform[total];
 		//this.objects = new Dictionary<int, GameObject> ();
@@ -64,6 +67,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 		this.horizontal = false;
 		// Posicion inicial del siguiente bloque
 		this.position = new Vector3 (5, 5, 15);
+		// Probabilidad de que gire
 		this.probabilidad = 20;
 		this.start = true;
 
@@ -124,7 +128,7 @@ public class RayCastDetectWalls : MonoBehaviour {
 
 				// Se clona el muro
 				this.Objects[i] = (Transform)Instantiate (this.walls[wall], this.position, this.rotationWalls);
-				// Guardo la ultima posicion
+
 				if(this.start)
 					this.start = false;
 			}
@@ -142,18 +146,15 @@ public class RayCastDetectWalls : MonoBehaviour {
 				this.position.z += this.sum;
 			}
 
-			// guardo la posicion actual
-
-
 		}
+
 		int test = this.numberOfWalls + 1;
+
+		// Todas las instancias se tiene que convertir a Transform, ya que el finalWall es transform y el array solo permite del tipo Transform
 		this.Objects[test] = (Transform)Instantiate (this.finalWall, this.position, this.rotationWalls);
 
-		// Pongo el canvas y el texto en el componente del finalWall
-		//this.finalWallInstantiate.GetComponent<StartRayCast> ().textWinner = this.textWinner;
-		//this.finalWallInstantiate.GetComponent<StartRayCast> ().canvasWinner = this.canvasWinner;
 		this.list.objects = this.Objects;
-		//Debug.Log (this.Objects[1].rigidbody.isKinematic);
+
 		// Destruye este objeto cuando haya terminado
 		Destroy(this.gameObject);
 

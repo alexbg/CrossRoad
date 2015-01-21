@@ -6,6 +6,7 @@ namespace CrossRoad.EventsCanvas{
 
 	public class EventsCanvas : MonoBehaviour {
 		//private SaveData save;
+		public Animator animator;
 		// Use this for initialization
 		void Start () {
 			//this.save = new SaveData ();
@@ -32,6 +33,15 @@ namespace CrossRoad.EventsCanvas{
 			GameObject.Find("Character").SendMessage("pause",false);
 		}
 
+		// Activa una animacion de bool
+		public void enableAnimation(string animation){
+			this.animator.SetBool (animation, true);
+		}
+
+		// Desactiva una animacion de bool
+		public void disableAnimation(string animation){
+			this.animator.SetBool (animation, false);
+		}
 
 	}
 }
