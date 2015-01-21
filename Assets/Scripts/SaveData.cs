@@ -8,6 +8,7 @@ namespace CrossRoad.SaveData{
 
 		public Text walls;
 		public Toggle lamp;
+		public Text text;
 
 		void Start(){
 			// Pongo el valor inicial de las lamparas
@@ -38,6 +39,32 @@ namespace CrossRoad.SaveData{
 			this.saveData ();
 
 		}
+
+		/*public void savePassword(){
+			PlayerPrefs.SetString ("password", this.text.text);
+		}
+
+		public void savePort(){
+			PlayerPrefs.SetInt ("port", int.Parse(this.text.text));
+		}
+
+		public void saveConnections(){
+			PlayerPrefs.SetInt ("connections", int.Parse(this.text.text));
+		}*/
+
+
+		public void saveString (string name){
+			PlayerPrefs.SetString (name, text.text);
+		}
+
+		public void saveInt(string name){
+			PlayerPrefs.SetInt (name, int.Parse(text.text));
+		}
+
+		public void saveFloat(string name){
+			PlayerPrefs.SetFloat (name, float.Parse(text.text));
+		}
+
 
 		// Guarda los PlayerPrefs
 		private void saveData(){
