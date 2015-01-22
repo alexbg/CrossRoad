@@ -16,26 +16,17 @@ Platform assembly: E:\projects\CrossRoad\test3_Data\Managed\Assembly-UnityScript
 Loading E:\projects\CrossRoad\test3_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: E:\projects\CrossRoad\test3_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\projects\CrossRoad\test3_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.095 seconds
+- Completed reload, in  0.067 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: E:\projects\CrossRoad\test3_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\projects\CrossRoad\test3_Data\Managed\System.dll (this message is harmless)
-NullReferenceException: Object reference not set to an instance of an object
-  at CrossRoad.Animations.EventsAnimations.EventsAnimations.enableCanvas (System.String name) [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
 Te has conectado al server
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Te has desconectado del servidor
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Te has conectado al server
+I am ready
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
