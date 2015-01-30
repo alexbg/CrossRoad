@@ -5,6 +5,7 @@ public class Lamps : MonoBehaviour {
 
 	public ParticleSystem fire;
 	public Light light;
+	public GameObject torch;
 	private bool lightIsAllowed;
 	private bool enable;
 	// Use this for initialization
@@ -17,11 +18,12 @@ public class Lamps : MonoBehaviour {
 		//Debug.Log (PlayerPrefs.GetInt ("lamp").ToString());
 		//lightIsAllowed = true;
 
-		if(Random.value > 0.9 && this.lightIsAllowed){
+		if(Random.value > 0.8 && this.lightIsAllowed){
 			this.enable = true;
 			this.fire.Play();
 			this.light.enabled = true;
 			this.audio.Play();
+			this.torch.renderer.enabled = true;
 		}
 
 	}

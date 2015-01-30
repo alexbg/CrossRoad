@@ -5,20 +5,23 @@ using UnityEngine.UI;
 public class NetworkBoth : MonoBehaviour {
 	private int players;
 	private int ready;
+	private int positions;
 	public Text numberOfPlayers;
 	public GameObject row;
 	public Text textPing;
 	public Text textReady;
 	public Text textMode;
+	public InputField textChat;
+	public Text textInputChat;
 	// Use this for initialization
-	void Start () {
-		
+	/*void Start () {
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-	}
+	}*/
 
 	// Conexion y creacion de servidor
 
@@ -60,35 +63,49 @@ public class NetworkBoth : MonoBehaviour {
 		this.networkView.RPC ("getGameMode", RPCMode.Others, mode);
 	}
 
-	// Mensajes
-	[RPC]
-	void sentMessage(string message){
-		networkView.RPC (message, RPCMode.Others);
+	public void sendMessageToChat(){
+		Debug.Log ("Enviado al chat");
+		this.networkView.RPC("sendMessage",RPCMode.All,this.textInputChat.text,PlayerPrefs.GetString("username"));
 	}
 
+	// Mensajes
+	[RPC]
+	void sendMessage(string message,string username){
+		Debug.Log ("Recibido el caht"+username+" "+message);
+		if(this.textChat.text == "")
+			this.textChat.text = username+": "+message+"\n";
+		else
+			this.textChat.text += username+": "+message+"\n";
+	}
+
+	// Obtiene el numero de jugadores
 	[RPC]
 	void getNumberOfPlayers(int players){
 		this.players = players;
 		this.numberOfPlayers.text = this.players.ToString ();
 	}
 
+	// Obtiene el ping
 	[RPC]
 	void getPing(int ping){
 		this.textPing.text = ping.ToString();
 	}
 
+	// indica que esta preparado
 	[RPC]
 	void getReady(){
 		this.ready++;
 		this.textReady.text = this.ready.ToString(); 
 	}
 
+	// Indica que no esta preparado
 	[RPC]
 	void getNotReady(){
 		this.ready--;
 		this.textReady.text = this.ready.ToString(); 
 	}
 
+	// Obtiene el numero de jugadores preparados
 	[RPC]
 	void getReadyPlayers(int ready){
 		this.ready = ready;
@@ -98,7 +115,7 @@ public class NetworkBoth : MonoBehaviour {
 	[RPC]
 	void getGameMode(int mode){
 		PlayerPrefs.SetInt ("mode", mode);
-		PlayerPrefs.Save();
+		//PlayerPrefs.Save();
 		/*switch(mode){
 			case 0:
 				this.textMode.text = "Quite";
@@ -111,7 +128,37 @@ public class NetworkBoth : MonoBehaviour {
 		if(mode == 0)
 			this.textMode.text = "Quite";
 		if(mode == 1)
-			this.textMode.text = "Run";
+			this.textMode.text = "Run!!";
+	}
+
+	// Inicia el nivel
+	// SI es el servidor, les dice a todos que inicien el nivel
+	[RPC]
+	public void loadLevelByNetwork(int level){
+		Application.LoadLevel (level);
+		if(Network.isServer){
+			this.networkView.RPC ("loadLevelByNetwork",RPCMode.OthersBuffered,level);
+			// Paro la red y nadie puede recibir ningun RPC
+			Network.isMessageQueueRunning = false;
+		}
+
+	}
+
+	// Obtiene su posicion en el juego
+	[RPC]
+	public void getMyPosition(int position){
+		switch(position){
+			case 2:
+				PlayerPrefs.SetString ("position", "Two");
+				break;
+			case 3:
+				PlayerPrefs.SetString ("position", "Three");
+				break;
+			case 4:
+				PlayerPrefs.SetString ("position", "Four");
+				break;
+		}
+		Debug.Log ("Mi posicion es: " + PlayerPrefs.GetString("position"));
 	}
 
 	// Eventos
@@ -122,6 +169,9 @@ public class NetworkBoth : MonoBehaviour {
 		this.players = 1;
 		this.ready = 0;
 		this.numberOfPlayers.text = this.players.ToString ();
+		this.positions = 2;
+		PlayerPrefs.SetString ("position", "One");
+		//Debug.Log ("Mi posicion es: " + PlayerPrefs.GetString("position"));
 	}
 
 	// Cuando se conecta un usuario al servidor
@@ -135,13 +185,20 @@ public class NetworkBoth : MonoBehaviour {
 		this.networkView.RPC ("getPing", player,Network.GetAveragePing(player));
 		// envio los usuarios que ya estan listos
 		this.networkView.RPC ("getReadyPlayers", player, this.ready);
+		// Le envio su posicion en el juego
+		this.networkView.RPC ("getMyPosition", player,this.players);
+		//Debug.Log ("Mi posicion es: " + PlayerPrefs.GetString("position"));
 	}
 	
 	void OnPlayerDisconnected(NetworkPlayer player){
 		Debug.Log ("Un jugador se ha desconectado");
 		this.players--;
+		this.ready--;
 		this.numberOfPlayers.text = this.players.ToString ();
+		// Obtiene el numero de jugadores
 		this.networkView.RPC ("getNumberOfPlayers", RPCMode.Others, this.players);
+		// envio los usuarios que ya estan listos
+		this.networkView.RPC ("getReadyPlayers", player, this.ready);
 	}
 
 	// Cuando falla al intentar conectarse con el servidor

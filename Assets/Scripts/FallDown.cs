@@ -6,6 +6,7 @@ public class FallDown : MonoBehaviour {
 	private float time;
 	private int objectToFall;
 	private bool enable;
+	private Rigidbody[] rigidbodies;
 	void Awake(){
 
 	}
@@ -27,10 +28,14 @@ public class FallDown : MonoBehaviour {
 		if(this.enable){
 			this.time += Time.deltaTime;
 			// Cada 5 segundos se cae uno de los muros
-			if(this.time >= 4 && this.objectToFall < this.objects.Length){
+			if(this.time >= 6 && this.objectToFall < this.objects.Length){
 				Debug.Log (this.objects[this.objectToFall]);
 				this.time = 0;
 				this.objects[this.objectToFall].rigidbody.isKinematic = false;
+				this.rigidbodies = this.objects[this.objectToFall].GetComponentsInChildren<Rigidbody>();
+				foreach(Rigidbody rigidbody in this.rigidbodies ){
+					rigidbody.isKinematic = false;
+				}
 				// Hay que darle un toque para que se caiga despues de quitarle el kinematic
 				this.objects[this.objectToFall].rigidbody.AddForce(-transform.up,ForceMode.Impulse);
 				this.objectToFall++;
