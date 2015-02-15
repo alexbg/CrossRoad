@@ -60,7 +60,7 @@ public class EnableTraps : MonoBehaviour {
 				case "Tree":
 					Debug.Log ("Ha entrado en el Tree");
 					//trap.rigidbody.isKinematic = false; // No funciona bien 
-					trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
+					trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 					this.isEnable = false;
 					this.audio.Play();
 					break;

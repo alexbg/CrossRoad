@@ -12,6 +12,7 @@ public class MoveCharacter : MonoBehaviour {
 	public Canvas menu;
 	// Texto que muestra que has ganado
 	public Text winnerText;
+	public GameObject loserText;
 	public MouseLook mouseCharacter;
 	public MouseLook mouseHead;
 
@@ -24,6 +25,7 @@ public class MoveCharacter : MonoBehaviour {
 	private bool tired;
 	private float maxVelocity;
 	private RaycastHit info;
+	private bool moving;
 	// Use this for initialization
 	void Start () {
 		Screen.showCursor = false;
@@ -47,25 +49,29 @@ public class MoveCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		this.moving = false;
 		//Debug.Log (this.rigidbody.velocity.magnitude);
-		if(Input.GetAxis("Vertical") > 0)
+		if(Input.GetAxis("Vertical") > 0){
+			this.moving = true;
 			this.y = 1;
-		else
+		}else{
+			this.moving = true;
 			this.y = -1;
-
-		if(Input.GetAxis("Horizontal") > 0)
-			this.x = 1;
-		else
-			this.x = -1;
-
-		if(Input.GetButtonDown("Cancel")){
-			this.pause(false);
 		}
+
+		if(Input.GetAxis("Horizontal") > 0){
+			this.x = 1;
+		}else{
+			this.x = -1;
+		}
+		/*if(Input.GetButtonDown("Cancel")){
+			this.pause(false);
+		}*/
 
 		this.time += Time.deltaTime;
 
 		// controla la barra de energia
-		if(Input.GetButton("Run") && !this.tired){
+		if(Input.GetButton("Run") && !this.tired && this.moving){
 			this.energy.value -= 20 * Time.deltaTime;
 		}else{
 			this.energy.value += 10 * Time.deltaTime;
@@ -150,40 +156,49 @@ public class MoveCharacter : MonoBehaviour {
 		switch(info.collider.tag){
 			case "Ball":
 				this.rigidbody.freezeRotation = false;
+				this.loserText.SetActive(true);
+				//this.endGame();
 				break;
 
 			case "Tree":
 				this.rigidbody.freezeRotation = false;
+				this.loserText.SetActive(true);
+				//this.endGame();
 				break;
+			/*case "Trampoline":
+				this.loserText.SetActive(true);
+				break;
+			case "Explosion":
+				this.loserText.SetActive(true);
+				break;*/
 		}
 	}
 
-	/*void OnTriggerEnter(Collider info){
+	void OnTriggerEnter(Collider info){
 		Debug.Log ("Ha colisionado con el personaje Trigger:" + info.transform.tag);
 		switch(info.collider.tag){
-		case "Ball":
-			this.rigidbody.freezeRotation = false;
+		case "Trampoline":
+			this.loserText.SetActive(true);
 			break;
-			
-		case "Tree":
-			this.rigidbody.freezeRotation = false;
+		case "Explosion":
+			this.loserText.SetActive(true);
 			break;
 		}
-	}*/
+	}
 
 	/*void OnCollisionStay(Collision info) {
 		//this.canJump = true;
 	}*/
 
-	public void back(){
+	/*public void back(){
 		this.menu.enabled = false;
-		this.toggleMouse();
-	}
+		//this.toggleMouse();
+	}*/
 
 	/// <summary>
 	/// Toggles the mouse.
 	/// </summary>
-	public void toggleMouse(){
+	/*public void toggleMouse(){
 		if(this.mouseHead.enabled)
 			this.mouseHead.enabled = false;
 		else
@@ -193,9 +208,9 @@ public class MoveCharacter : MonoBehaviour {
 			this.mouseCharacter.enabled = false;
 		else
 			this.mouseCharacter.enabled = true;
-	}
+	}*/
 	// Pausa el juego
-	public void pause(bool end){
+	/*public void pause(bool end){
 		if(end)
 			this.winnerText.enabled = true;
 
@@ -215,7 +230,7 @@ public class MoveCharacter : MonoBehaviour {
 			Screen.showCursor = false;
 		else
 			Screen.showCursor = true;
-	}
+	}*/
 
 	// Termina la partida
 	/// <summary>
@@ -236,4 +251,8 @@ public class MoveCharacter : MonoBehaviour {
 	/*void OnLevelWasLoaded(int level) {
 		Time.timeScale = 1.0f;
 	}*/
+
+	void OnDisable() {
+		this.audio.Stop();
+	}
 }

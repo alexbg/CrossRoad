@@ -17,8 +17,8 @@ public class Lamps : MonoBehaviour {
 
 		//Debug.Log (PlayerPrefs.GetInt ("lamp").ToString());
 		//lightIsAllowed = true;
-
-		if(Random.value > 0.8 && this.lightIsAllowed){
+		//this.lightIsAllowed = true;
+		if(Random.value > 0.9 && this.lightIsAllowed){
 			this.enable = true;
 			this.fire.Play();
 			this.light.enabled = true;
