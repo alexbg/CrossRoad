@@ -79,6 +79,10 @@ public class EnableTraps : MonoBehaviour {
 					this.isEnable = false;
 					this.audio.Play();
 					break;
+				case "SpikeGround":
+					Debug.Log ("Ha colisionado con SpikeGround");
+					this.trap.SetActive(false);
+					break;
 			}
 		}
 	}

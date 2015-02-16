@@ -42,7 +42,7 @@ public class MoveCharacter : MonoBehaviour {
 		if(this.maxWalkTired == 0)
 			this.maxWalkTired = 2;
 
-		this.canJump = true;
+		this.canJump = false;
 		this.tired = false;
 		//Physics.IgnoreCollision (this.ignoreCollision.collider, this.collider);
 	}
@@ -101,6 +101,7 @@ public class MoveCharacter : MonoBehaviour {
 				this.rigidbody.drag = 2;
 			}
 		}
+		Debug.Log (this.rigidbody.velocity.magnitude);
 	}
 
 	void FixedUpdate(){
@@ -152,6 +153,7 @@ public class MoveCharacter : MonoBehaviour {
 	// Es collisionEnter y no trigger porque la bola tiene un rigidbody, asiq niega el rigidbody del padre
 	// y utiliza el suyo propio
 	void OnCollisionEnter(Collision info) {
+		Debug.Log (info.collider.name);
 		Debug.Log ("Ha colisionado con el personaje No trigger:" + info.collider.tag);
 		switch(info.collider.tag){
 			case "Ball":
@@ -165,13 +167,15 @@ public class MoveCharacter : MonoBehaviour {
 				this.loserText.SetActive(true);
 				//this.endGame();
 				break;
-			/*case "Trampoline":
-				this.loserText.SetActive(true);
-				break;
-			case "Explosion":
+			/*case "Spike":
+				this.rigidbody.freezeRotation = false;
 				this.loserText.SetActive(true);
 				break;*/
 		}
+	}
+
+	void OnCollisionExit(Collision info){
+		this.canJump = false;
 	}
 
 	void OnTriggerEnter(Collider info){
@@ -183,7 +187,13 @@ public class MoveCharacter : MonoBehaviour {
 		case "Explosion":
 			this.loserText.SetActive(true);
 			break;
+		case "Spike":
+			this.rigidbody.freezeRotation = false;
+			this.loserText.SetActive(true);
+			this.rigidbody.isKinematic = true;
+			break;
 		}
+
 	}
 
 	/*void OnCollisionStay(Collision info) {
