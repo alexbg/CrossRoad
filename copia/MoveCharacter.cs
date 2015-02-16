@@ -3,12 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 public class MoveCharacter : MonoBehaviour {
 
-	public float acceleration;//
-	public float force;//
-	public float maxWalk;//
-	public float maxRun;//
-	public float maxWalkTired;//
-	public float forceJump;
+	public float acceleration;
+	public float maxWalk;
+	public float maxRun;
+	public float maxWalkTired;
 	public int maxHeight;
 	// Canvas del menu principal
 	public Canvas menu;
@@ -32,16 +30,43 @@ public class MoveCharacter : MonoBehaviour {
 	void Start () {
 		Screen.showCursor = false;
 
-		this.maxWalk = 3;
-		this.maxRun = 5;
-		this.maxWalkTired = 2;
-		this.force = 20.8f;
-		this.forceJump = 20;
+		if(this.acceleration == 0)
+			this.acceleration = 10;
+
+		if(this.maxWalk == 0)
+			this.maxWalk = 3;
+
+		if(this.maxRun == 0)
+			this.maxRun = 5;
+
+		if(this.maxWalkTired == 0)
+			this.maxWalkTired = 2;
+
+		this.canJump = false;
+		this.tired = false;
 		//Physics.IgnoreCollision (this.ignoreCollision.collider, this.collider);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		this.moving = false;
+		//Debug.Log (this.rigidbody.velocity.magnitude);
+		if(Input.GetAxis("Vertical") > 0){
+			this.moving = true;
+			this.y = 1;
+		}else{
+			this.moving = true;
+			this.y = -1;
+		}
+
+		if(Input.GetAxis("Horizontal") > 0){
+			this.x = 1;
+		}else{
+			this.x = -1;
+		}
+		/*if(Input.GetButtonDown("Cancel")){
+			this.pause(false);
+		}*/
 
 		this.time += Time.deltaTime;
 
@@ -52,37 +77,75 @@ public class MoveCharacter : MonoBehaviour {
 			this.energy.value += 10 * Time.deltaTime;
 		}
 
+		// comprueba si se cansa el jugadore
+		if(this.energy.value == 0){
+			this.tired = true;
+		}else if(this.energy.value == 100){
+			this.tired = false;
+		}
+
+		if((Input.GetButton("Vertical") ||  Input.GetButton("Horizontal")) && this.canJump){
+			if(!this.audio.isPlaying){
+				this.audio.Play();
+			}
+
+		}else{
+			this.audio.Stop();
+
+		}
+		// Permite saber si puedes saltar o no
+
 		if(Physics.Raycast(this.transform.position,-transform.up,1.0f) && !this.canJump){
 			if(!this.canJump){
 				this.canJump = true;
+				this.rigidbody.drag = 2;
 			}
 		}
-
-		//this.canJump = false;
+		Debug.Log (this.rigidbody.velocity.magnitude);
 	}
 
 	void FixedUpdate(){
 
+		// Controla por prioridad
+		if(this.tired){
+			this.maxVelocity = this.maxWalkTired;
+			this.audio.pitch = 0.9f;
+		}
+		else if(Input.GetButton("Run")){
+			this.maxVelocity = this.maxRun;
+			this.audio.pitch = 1.5f;
+		}
+		else{
+			this.maxVelocity = this.maxWalk;
+			this.audio.pitch = 1.0f;
+		}
+
 		if(Input.GetButton("Vertical") && this.canJump){
-			this.rigidbody.AddForce(transform.forward * this.force * Input.GetAxis("Vertical"),ForceMode.Acceleration);
+			this.rigidbody.AddForce(transform.forward * this.acceleration * this.y,ForceMode.Force);
+
 		}
 
 		if(Input.GetButton("Horizontal") && this.canJump){
-			this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
+			this.rigidbody.AddForce(transform.right * this.acceleration * this.x,ForceMode.Force);
+
+		}
+		// Control de velocidad
+
+		if(this.rigidbody.velocity.magnitude > this.maxVelocity && this.canJump){
+
+			this.rigidbody.velocity = this.rigidbody.velocity.normalized * this.maxVelocity;
+
 		}
 
-		if(Input.GetButton ("Jump") && this.canJump){
-			this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
+		// controla el salto
+		if(this.canJump && Input.GetButton("Jump") && !this.tired){
 			this.canJump = false;
+			this.rigidbody.AddForce(new Vector3(this.rigidbody.velocity.x/2,(this.maxHeight * 1),this.rigidbody.velocity.z/2),ForceMode.Impulse);
+			this.rigidbody.drag = 1;
+			
+			//Debug.Log("salta");
+
 		}
-
-		if(this.rigidbody.velocity.magnitude > this.maxRun){
-			this.rigidbody.velocity = this.rigidbody.velocity.normalized * this.maxRun;
-		}
-
-
-		Debug.Log (this.rigidbody.velocity.magnitude);
-		//this.rigidbody.ve
 	}
 	// COLISIONES
 
