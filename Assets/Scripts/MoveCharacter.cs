@@ -5,38 +5,40 @@ public class MoveCharacter : MonoBehaviour {
 
 	public float acceleration;//
 	public float force;//
-	public float maxWalk;//
-	public float maxRun;//
-	public float maxWalkTired;//
-	public float forceJump;
+	private float maxWalk;//
+	private float maxRun;//
+	private float maxWalkTired;//
+	private float forceJump;//
 	public int maxHeight;
 	// Canvas del menu principal
 	public Canvas menu;
 	// Texto que muestra que has ganado
-	public Text winnerText;
-	public GameObject loserText;
+	public Text winnerText;//
+	public GameObject loserText;//
 	public MouseLook mouseCharacter;
 	public MouseLook mouseHead;
 
 	public Slider energy;
 	//public Transform ignoreCollision;
+	private int fieldOfView;
 	private float y;
 	private float x;
-	private bool canJump;
+	private bool canJump;//
 	private float time;
-	private bool tired;
-	private float maxVelocity;
+	private bool isTired;//
+	private float maxVelocity;//
 	private RaycastHit info;
 	private bool moving;
 	// Use this for initialization
 	void Start () {
-		Screen.showCursor = false;
-
+		//Screen.showCursor = false;
+		this.fieldOfView = 60;
 		this.maxWalk = 3;
 		this.maxRun = 5;
 		this.maxWalkTired = 2;
-		this.force = 20.8f;
-		this.forceJump = 20;
+		this.force = 15f;
+		this.forceJump = 6f;
+
 		//Physics.IgnoreCollision (this.ignoreCollision.collider, this.collider);
 	}
 	
@@ -44,40 +46,97 @@ public class MoveCharacter : MonoBehaviour {
 	void Update () {
 
 		this.time += Time.deltaTime;
+		// Pone al personaje cansado
+		if(this.energy.value == 0){
+			this.isTired = true;
+		}
+
+		// Quita el cansancion al personaje
+		if(this.isTired && this.energy.value == 100){
+			this.isTired = false;
+		}
 
 		// controla la barra de energia
-		if(Input.GetButton("Run") && !this.tired && this.moving){
+		if(Input.GetButton("Run") && !this.isTired){
 			this.energy.value -= 20 * Time.deltaTime;
 		}else{
 			this.energy.value += 10 * Time.deltaTime;
 		}
 
+		// Controla que el personaje pueda saltar si esta tocando el suelo
+		// Lanza un raycast en direccion negativa de la y. Si el raycast toca algo, es que el personaje esta en el suelo
 		if(Physics.Raycast(this.transform.position,-transform.up,1.0f) && !this.canJump){
 			if(!this.canJump){
 				this.canJump = true;
+				// Para que no haya problemas con la velocidad, se pone a 0 la velocidad de caida cuando
+				// el raycast toca el objeto con el que choca
+				this.rigidbody.velocity = new Vector3(this.rigidbody.velocity.x,0,this.rigidbody.velocity.z);
 			}
 		}
 
+		// Control de velocidad y de la fieldOfView de la camara
+		// El maximo fieldOfView es 60, se cambia en la variable fieldOfView
+		if(this.isTired){
+			this.maxVelocity = this.maxWalkTired;
+			if(Camera.main.fieldOfView < this.fieldOfView)
+				// Aumenta el field -10 cada segundo
+				Camera.main.fieldOfView += 10 * Time.deltaTime;
+			this.audio.pitch = 0.9f;
+
+		}else if(Input.GetButton("Run")){
+			this.maxVelocity = this.maxRun;
+			if(Camera.main.fieldOfView > 55)
+				// Reduce el field -10 cada segundo
+				Camera.main.fieldOfView -= 10 * Time.deltaTime;
+			this.audio.pitch = 1.3f;
+
+		}else{
+			this.maxVelocity = this.maxWalk;
+			if(Camera.main.fieldOfView < this.fieldOfView)
+				// Aumenta el field -10 cada segundo
+				Camera.main.fieldOfView += 10 * Time.deltaTime;
+			this.audio.pitch = 1.0f;
+
+		}
+
+		// si se pone en FIxedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
+		// que no va segun los frames. De esta forma solo le impulsa una vez
+		if(this.energy.value >=20){
+			if(Input.GetButton ("Jump") && this.canJump && !this.isTired){
+				this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
+				this.energy.value -= 20;
+				this.canJump = false;
+			}
+		}
+
+		if((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && this.canJump){
+			if(!this.audio.isPlaying)
+				this.audio.Play();
+		}else{
+			this.audio.Stop();
+		}
+
+		//Debug.Log (Input.GetButton ("Jump"));
+		//Debug.Log (this.rigidbody.velocity.magnitude);
+		//Debug.Log (Camera.main.fieldOfView);
 		//this.canJump = false;
 	}
 
 	void FixedUpdate(){
 
+		// Movimiento vertical la z
 		if(Input.GetButton("Vertical") && this.canJump){
 			this.rigidbody.AddForce(transform.forward * this.force * Input.GetAxis("Vertical"),ForceMode.Acceleration);
 		}
 
+		// Movimiento horizontal la x
 		if(Input.GetButton("Horizontal") && this.canJump){
 			this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
 		}
 
-		if(Input.GetButton ("Jump") && this.canJump){
-			this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
-			this.canJump = false;
-		}
-
-		if(this.rigidbody.velocity.magnitude > this.maxRun){
-			this.rigidbody.velocity = this.rigidbody.velocity.normalized * this.maxRun;
+		// Controla la velocidad
+		if(this.rigidbody.velocity.magnitude > this.maxVelocity && this.canJump){
+			this.rigidbody.velocity = this.rigidbody.velocity.normalized * this.maxVelocity;
 		}
 
 
@@ -133,51 +192,6 @@ public class MoveCharacter : MonoBehaviour {
 
 	}
 
-	/*void OnCollisionStay(Collision info) {
-		//this.canJump = true;
-	}*/
-
-	/*public void back(){
-		this.menu.enabled = false;
-		//this.toggleMouse();
-	}*/
-
-	/// <summary>
-	/// Toggles the mouse.
-	/// </summary>
-	/*public void toggleMouse(){
-		if(this.mouseHead.enabled)
-			this.mouseHead.enabled = false;
-		else
-			this.mouseHead.enabled = true;
-
-		if(this.mouseCharacter.enabled)
-			this.mouseCharacter.enabled = false;
-		else
-			this.mouseCharacter.enabled = true;
-	}*/
-	// Pausa el juego
-	/*public void pause(bool end){
-		if(end)
-			this.winnerText.enabled = true;
-
-		if(this.menu.enabled)
-			this.menu.enabled = false;
-		else
-			this.menu.enabled = true;
-
-		this.toggleMouse();
-
-		if(Time.timeScale == 1)
-			Time.timeScale = 0;
-		else
-			Time.timeScale = 1.0f;
-
-		if(Screen.showCursor)
-			Screen.showCursor = false;
-		else
-			Screen.showCursor = true;
-	}*/
 
 	// Termina la partida
 	/// <summary>
