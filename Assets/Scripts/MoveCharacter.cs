@@ -9,26 +9,26 @@ public class MoveCharacter : MonoBehaviour {
 	private float maxRun;//
 	private float maxWalkTired;//
 	private float forceJump;//
-	public int maxHeight;
+	//public int maxHeight;
 	// Canvas del menu principal
 	public Canvas menu;
 	// Texto que muestra que has ganado
 	public Text winnerText;//
 	public GameObject loserText;//
-	public MouseLook mouseCharacter;
-	public MouseLook mouseHead;
-
+	public MouseLook mouseCharacter;//
+	public MouseLook mouseHead;//
+	public Animator lightController;
 	public Slider energy;
 	//public Transform ignoreCollision;
 	private int fieldOfView;
-	private float y;
-	private float x;
+	//private float y;
+	//private float x;
 	private bool canJump;//
-	private float time;
+	private float time;//
 	private bool isTired;//
 	private float maxVelocity;//
 	private RaycastHit info;
-	private bool moving;
+	//private bool moving;
 	// Use this for initialization
 	void Start () {
 		//Screen.showCursor = false;
@@ -38,7 +38,7 @@ public class MoveCharacter : MonoBehaviour {
 		this.maxWalkTired = 2;
 		this.force = 15f;
 		this.forceJump = 6f;
-
+		//this.animation.Stop ();
 		//Physics.IgnoreCollision (this.ignoreCollision.collider, this.collider);
 	}
 	
@@ -49,11 +49,13 @@ public class MoveCharacter : MonoBehaviour {
 		// Pone al personaje cansado
 		if(this.energy.value == 0){
 			this.isTired = true;
+			this.lightController.SetBool("isRunning",false);
 		}
 
 		// Quita el cansancion al personaje
 		if(this.isTired && this.energy.value == 100){
 			this.isTired = false;
+			this.lightController.SetBool("isTired",false);
 		}
 
 		// controla la barra de energia
@@ -78,6 +80,7 @@ public class MoveCharacter : MonoBehaviour {
 		// El maximo fieldOfView es 60, se cambia en la variable fieldOfView
 		if(this.isTired){
 			this.maxVelocity = this.maxWalkTired;
+			this.lightController.SetBool("isTired",true);
 			if(Camera.main.fieldOfView < this.fieldOfView)
 				// Aumenta el field -10 cada segundo
 				Camera.main.fieldOfView += 10 * Time.deltaTime;
@@ -85,6 +88,9 @@ public class MoveCharacter : MonoBehaviour {
 
 		}else if(Input.GetButton("Run")){
 			this.maxVelocity = this.maxRun;
+			// Controla que no se inicie la animacion cuando este saltando
+			if(this.canJump)
+				this.lightController.SetBool("isRunning",true);
 			if(Camera.main.fieldOfView > 55)
 				// Reduce el field -10 cada segundo
 				Camera.main.fieldOfView -= 10 * Time.deltaTime;
@@ -92,6 +98,7 @@ public class MoveCharacter : MonoBehaviour {
 
 		}else{
 			this.maxVelocity = this.maxWalk;
+			this.lightController.SetBool("isRunning",false);
 			if(Camera.main.fieldOfView < this.fieldOfView)
 				// Aumenta el field -10 cada segundo
 				Camera.main.fieldOfView += 10 * Time.deltaTime;
@@ -99,13 +106,15 @@ public class MoveCharacter : MonoBehaviour {
 
 		}
 
-		// si se pone en FIxedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
+		// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
 		// que no va segun los frames. De esta forma solo le impulsa una vez
 		if(this.energy.value >=20){
 			if(Input.GetButton ("Jump") && this.canJump && !this.isTired){
 				this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
 				this.energy.value -= 20;
 				this.canJump = false;
+				// Apaga la animacion de la linterna cuando esta saltando
+				this.lightController.SetBool("isRunning",false);
 			}
 		}
 
