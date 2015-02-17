@@ -38,7 +38,7 @@ namespace CrossRoad.Menu{
 					Screen.showCursor = true;
 				}
 				togglePause();
-				Debug.Log(pause);
+				//Debug.Log(pause);
 			}
 		}
 

@@ -28,7 +28,7 @@ public class FallDown : MonoBehaviour {
 		if(this.enable){
 			this.time += Time.deltaTime;
 			// Cada 5 segundos se cae uno de los muros
-			if(this.time >= 5 && this.objectToFall < this.objects.Length){
+			if(this.time >= 4 && this.objectToFall < this.objects.Length){
 				Debug.Log (this.objects[this.objectToFall]);
 				this.time = 0;
 				this.objects[this.objectToFall].rigidbody.isKinematic = false;

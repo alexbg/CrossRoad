@@ -15,7 +15,7 @@ namespace CrossRoad.SaveData{
 			PlayerPrefs.SetInt ("lamp", 0);
 			// Pongo un modo de juego por defecto
 			PlayerPrefs.SetInt ("mode", 0);
-			this.saveData ();
+			//this.saveData ();
 		}
 
 		public void saveWalls(){
@@ -25,18 +25,25 @@ namespace CrossRoad.SaveData{
 		}
 
 		public void saveLamp(){
-			if(this.lamp.isOn)
+			if(this.lamp.isOn){
 				PlayerPrefs.SetInt ("lamp", 1);
-			else
+				//Debug.Log (PlayerPrefs.GetInt("lamp"));
+			}else{
 				PlayerPrefs.SetInt ("lamp", 0);
-			this.saveData ();
-
+				//Debug.Log (PlayerPrefs.GetInt("lamp"));
+			}
+			//this.saveData ();
+			//Debug.Log (PlayerPrefs.GetInt("lamp"));
 		}
 
 		public void saveGameMode(int gameMode){
-
+			//Debug.Log (PlayerPrefs.GetInt("lamp"));
 			PlayerPrefs.SetInt ("mode", gameMode);
-			this.saveData ();
+
+			if(this.lamp.isOn)
+				PlayerPrefs.SetInt ("lamp", 1);
+			Debug.Log (PlayerPrefs.GetInt("lamp"));
+			//this.saveData ();
 
 		}
 

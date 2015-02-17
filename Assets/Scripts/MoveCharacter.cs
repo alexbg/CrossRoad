@@ -149,7 +149,7 @@ public class MoveCharacter : MonoBehaviour {
 		}
 
 
-		Debug.Log (this.rigidbody.velocity.magnitude);
+		//Debug.Log (this.rigidbody.velocity.magnitude);
 		//this.rigidbody.ve
 	}
 	// COLISIONES

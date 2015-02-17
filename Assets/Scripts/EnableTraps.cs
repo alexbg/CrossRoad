@@ -81,7 +81,11 @@ public class EnableTraps : MonoBehaviour {
 					break;
 				case "SpikeGround":
 					Debug.Log ("Ha colisionado con SpikeGround");
+					// No suena porque destruye el objeto donde estan las trampas
+					this.audio.Play();
+					//if(!this.audio.isPlaying)
 					this.trap.SetActive(false);
+					
 					break;
 			}
 		}

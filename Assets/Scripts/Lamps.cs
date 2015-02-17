@@ -10,11 +10,14 @@ public class Lamps : MonoBehaviour {
 	private bool enable;
 	// Use this for initialization
 	void Start () {
-		if(PlayerPrefs.GetInt("lamp") == 1)
-			this.lightIsAllowed = true;
-		else
-			this.lightIsAllowed = false;
 
+		if(PlayerPrefs.GetInt("lamp") == 1){
+			this.lightIsAllowed = true;
+			Debug.Log ("Si lamparas");
+		}else{
+			this.lightIsAllowed = false;
+			Debug.Log ("No lamparas");
+		}
 		//Debug.Log (PlayerPrefs.GetInt ("lamp").ToString());
 		//lightIsAllowed = true;
 		//this.lightIsAllowed = true;
