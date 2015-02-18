@@ -28,6 +28,7 @@ public class MoveCharacter : MonoBehaviour {
 	private bool isTired;//
 	private float maxVelocity;//
 	private RaycastHit info;
+	public AudioSource headSound;
 	//private bool moving;
 	// Use this for initialization
 	void Start () {
@@ -50,12 +51,15 @@ public class MoveCharacter : MonoBehaviour {
 		if(this.energy.value == 0){
 			this.isTired = true;
 			this.lightController.SetBool("isRunning",false);
+			//if(!this.headSound.isPlaying)
+				this.headSound.Play();
 		}
 
 		// Quita el cansancion al personaje
 		if(this.isTired && this.energy.value == 100){
 			this.isTired = false;
 			this.lightController.SetBool("isTired",false);
+			this.headSound.Stop();
 		}
 
 		// controla la barra de energia
@@ -164,12 +168,14 @@ public class MoveCharacter : MonoBehaviour {
 			case "Ball":
 				this.rigidbody.freezeRotation = false;
 				this.loserText.SetActive(true);
+				this.headSound.Stop();
 				//this.endGame();
 				break;
 
 			case "Tree":
 				this.rigidbody.freezeRotation = false;
 				this.loserText.SetActive(true);
+				this.headSound.Stop();
 				//this.endGame();
 				break;
 			/*case "Spike":
@@ -188,14 +194,17 @@ public class MoveCharacter : MonoBehaviour {
 		switch(info.collider.tag){
 		case "Trampoline":
 			this.loserText.SetActive(true);
+			this.headSound.Stop();
 			break;
 		case "Explosion":
 			this.loserText.SetActive(true);
+			this.headSound.Stop();
 			break;
 		case "Spike":
 			this.rigidbody.freezeRotation = false;
 			this.loserText.SetActive(true);
 			this.rigidbody.isKinematic = true;
+			this.headSound.Stop();
 			break;
 		}
 
