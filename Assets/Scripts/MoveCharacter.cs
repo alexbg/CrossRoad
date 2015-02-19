@@ -17,8 +17,8 @@ public class MoveCharacter : MonoBehaviour {
 	public GameObject loserText;//
 	public MouseLook mouseCharacter;//
 	public MouseLook mouseHead;//
-	public Animator lightController;
-	public Slider energy;
+	public Animator lightController;//
+	public Slider energy;//
 	//public Transform ignoreCollision;
 	private int fieldOfView;
 	//private float y;
@@ -32,7 +32,7 @@ public class MoveCharacter : MonoBehaviour {
 	//private bool moving;
 	// Use this for initialization
 	void Start () {
-		//Screen.showCursor = false;
+		Screen.showCursor = false;
 		this.fieldOfView = 60;
 		this.maxWalk = 3;
 		this.maxRun = 5;
@@ -167,21 +167,17 @@ public class MoveCharacter : MonoBehaviour {
 		switch(info.collider.tag){
 			case "Ball":
 				this.rigidbody.freezeRotation = false;
-				this.loserText.SetActive(true);
-				this.headSound.Stop();
-				//this.endGame();
+				/*this.loserText.SetActive(true);
+				this.headSound.Stop();*/
+				this.genericActionsCollision();
 				break;
 
 			case "Tree":
 				this.rigidbody.freezeRotation = false;
-				this.loserText.SetActive(true);
-				this.headSound.Stop();
-				//this.endGame();
+				/*this.loserText.SetActive(true);
+				this.headSound.Stop();*/
+				this.genericActionsCollision();
 				break;
-			/*case "Spike":
-				this.rigidbody.freezeRotation = false;
-				this.loserText.SetActive(true);
-				break;*/
 		}
 	}
 
@@ -192,22 +188,35 @@ public class MoveCharacter : MonoBehaviour {
 	void OnTriggerEnter(Collider info){
 		Debug.Log ("Ha colisionado con el personaje Trigger:" + info.transform.tag);
 		switch(info.collider.tag){
+			// Trampoline y explosion no modifican la freezeRotation, porque ya lo hace la trampa
+			// Ya que son "explosiones" y lo modifican antes de afectarle
 		case "Trampoline":
-			this.loserText.SetActive(true);
-			this.headSound.Stop();
+			/*this.loserText.SetActive(true);
+			this.headSound.Stop();*/
+			this.genericActionsCollision();
 			break;
 		case "Explosion":
-			this.loserText.SetActive(true);
-			this.headSound.Stop();
+			/*this.loserText.SetActive(true);
+			this.headSound.Stop();*/
+			this.genericActionsCollision();
 			break;
 		case "Spike":
 			this.rigidbody.freezeRotation = false;
-			this.loserText.SetActive(true);
+			//this.loserText.SetActive(true);
 			this.rigidbody.isKinematic = true;
-			this.headSound.Stop();
+			//this.headSound.Stop();
+			this.genericActionsCollision();
 			break;
 		}
 
+	}
+
+	/// <summary>
+	/// Acciones genericas en las colisiones con el personaje
+	/// </summary>
+	public void genericActionsCollision(){
+		this.loserText.SetActive(true);
+		this.headSound.Stop();
 	}
 
 

@@ -7,6 +7,7 @@ public class EnableTraps : MonoBehaviour {
 	public GameObject trap;
 	// If this is true then the trap will be enabled when the character enter in collision
 	private bool isEnable;
+	public AudioSource globalSound;
 
 	// Use this for initialization
 	void Start () {
@@ -42,32 +43,30 @@ public class EnableTraps : MonoBehaviour {
 
 	public void fireTrap(Collider info){
 		Debug.Log ("Colision con:" + this.trap.tag);
-		if (this.isEnable) {
+		if (this.isEnable && info.tag == "Player") {
 			switch(this.trap.tag){
 				case "Ball":
 					trap.rigidbody.isKinematic = false;
-					this.isEnable = false;
-					this.audio.Play();
+					this.genericTrapsActions();
 					break;
 
 				case "Trampoline":
 					info.rigidbody.freezeRotation = false;
 					info.rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
-					this.isEnable = false;
-					this.audio.Play();
+					
+					this.genericTrapsActions();
 					break;
 
 				case "Tree":
 					Debug.Log ("Ha entrado en el Tree");
 					//trap.rigidbody.isKinematic = false; // No funciona bien 
 					trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-					this.isEnable = false;
-					this.audio.Play();
+					this.genericTrapsActions();
 					break;
 
 				case "Explosion":
 					Debug.Log("Ha explotado");
-					Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 5F);
+					Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 5f);
 					int i = 0;
 					while (i < hitColliders.Length) {
 						if(hitColliders[i].rigidbody){
@@ -76,60 +75,27 @@ public class EnableTraps : MonoBehaviour {
 						}
 						i++;
 					}
-					this.isEnable = false;
-					this.audio.Play();
+					this.genericTrapsActions();
 					break;
+
 				case "SpikeGround":
-					Debug.Log ("Ha colisionado con SpikeGround");
-					// No suena porque destruye el objeto donde estan las trampas
-					this.audio.Play();
-					//if(!this.audio.isPlaying)
+					this.genericTrapsActions(true);
 					this.trap.SetActive(false);
-					
 					break;
 			}
 		}
 	}
 
-	/*public void fireTrap(Collision info){
-		Debug.Log ("Colision con:" + this.trap.tag);
-		if (this.isEnable) {
-			switch(this.trap.tag){
-			case "Ball":
-				trap.rigidbody.isKinematic = false;
-				this.isEnable = false;
-				this.audio.Play();
-				break;
-				
-			case "Trampoline":
-				info.rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
-				this.isEnable = false;
-				this.audio.Play();
-				break;
-				
-			case "Tree":
-				Debug.Log ("Ha entrado en el Tree");
-				//trap.rigidbody.isKinematic = false; // No funciona bien 
-				trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
-				this.isEnable = false;
-				this.audio.Play();
-				break;
-				
-			case "Explosion":
-				Debug.Log("Ha explotado");
-				Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 5F);
-				int i = 0;
-				while (i < hitColliders.Length) {
-					if(hitColliders[i].rigidbody){
-						hitColliders[i].rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
-						hitColliders[i].rigidbody.freezeRotation = false;	
-					}
-					i++;
-				}
-				this.isEnable = false;
-				this.audio.Play();
-				break;
-			}
-		}
-	}*/
+	/// <summary>
+	/// Acciones genericas de las trampas
+	/// </summary>
+	/// <param name="global">If set to <c>true</c> global.</param>
+	public void genericTrapsActions(bool global = false){
+		if(global)
+			this.globalSound.Play();
+		else
+			this.audio.Play();
+
+		this.isEnable = false;
+	}
 }
