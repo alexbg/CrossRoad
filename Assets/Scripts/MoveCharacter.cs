@@ -63,7 +63,7 @@ public class MoveCharacter : MonoBehaviour {
 		}
 
 		// controla la barra de energia
-		if(Input.GetButton("Run") && !this.isTired){
+		if((Input.GetButton("Run") || Input.GetAxis("Run") > 0 )&& !this.isTired){
 			this.energy.value -= 20 * Time.deltaTime;
 		}else{
 			this.energy.value += 10 * Time.deltaTime;
@@ -90,7 +90,7 @@ public class MoveCharacter : MonoBehaviour {
 				Camera.main.fieldOfView += 10 * Time.deltaTime;
 			this.audio.pitch = 0.9f;
 
-		}else if(Input.GetButton("Run")){
+		}else if(Input.GetButton("Run") || Input.GetAxis("Run") > 0){
 			this.maxVelocity = this.maxRun;
 			// Controla que no se inicie la animacion cuando este saltando
 			if(this.canJump)
@@ -113,7 +113,7 @@ public class MoveCharacter : MonoBehaviour {
 		// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
 		// que no va segun los frames. De esta forma solo le impulsa una vez
 		if(this.energy.value >=20){
-			if(Input.GetButton ("Jump") && this.canJump && !this.isTired){
+			if((Input.GetButton ("Jump") || Input.GetAxis("Jump") > 0) && this.canJump && !this.isTired){
 				this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
 				this.energy.value -= 20;
 				this.canJump = false;
@@ -133,17 +133,19 @@ public class MoveCharacter : MonoBehaviour {
 		//Debug.Log (this.rigidbody.velocity.magnitude);
 		//Debug.Log (Camera.main.fieldOfView);
 		//this.canJump = false;
+		Debug.Log (Input.GetAxis("Jump"));
+
 	}
 
 	void FixedUpdate(){
 
 		// Movimiento vertical la z
-		if(Input.GetButton("Vertical") && this.canJump){
+		if(/*Input.GetButton("Vertical") && */this.canJump){
 			this.rigidbody.AddForce(transform.forward * this.force * Input.GetAxis("Vertical"),ForceMode.Acceleration);
 		}
 
 		// Movimiento horizontal la x
-		if(Input.GetButton("Horizontal") && this.canJump){
+		if(/*Input.GetButton("Horizontal") && */this.canJump){
 			this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
 		}
 

@@ -6,8 +6,9 @@ namespace CrossRoad.Configurations{
 	public class PrincipalConfigurations : MonoBehaviour {
 
 		void Start(){
+			//PlayerPrefs.DeleteAll ();
 			PlayerPrefs.SetString("username","Pepe");
-			PlayerPrefs.Save ();
+			//PlayerPrefs.Save ();
 		}
 
 		void OnLevelWasLoaded(int level) {
