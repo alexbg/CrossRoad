@@ -16,6 +16,7 @@ namespace CrossRoad.SaveData{
 			// Pongo un modo de juego por defecto
 			PlayerPrefs.SetInt ("mode", 0);
 			//this.saveData ();
+			PlayerPrefs.SetInt ("players", 1);
 		}
 
 		public void saveWalls(){
@@ -66,6 +67,7 @@ namespace CrossRoad.SaveData{
 
 		public void saveInt(string name){
 			PlayerPrefs.SetInt (name, int.Parse(text.text));
+			//Debug.Log (name + " " + text.text);
 		}
 
 		public void saveFloat(string name){

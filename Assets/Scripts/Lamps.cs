@@ -13,10 +13,10 @@ public class Lamps : MonoBehaviour {
 
 		if(PlayerPrefs.GetInt("lamp") == 1){
 			this.lightIsAllowed = true;
-			Debug.Log ("Si lamparas");
+			//Debug.Log ("Si lamparas");
 		}else{
 			this.lightIsAllowed = false;
-			Debug.Log ("No lamparas");
+			//Debug.Log ("No lamparas");
 		}
 		//Debug.Log (PlayerPrefs.GetInt ("lamp").ToString());
 		//lightIsAllowed = true;
@@ -25,7 +25,8 @@ public class Lamps : MonoBehaviour {
 			this.enable = true;
 			this.fire.Play();
 			this.light.enabled = true;
-			this.audio.Play();
+			if(!PositionCharacter.multiplayer)
+				this.audio.Play();
 			this.torch.renderer.enabled = true;
 		}
 

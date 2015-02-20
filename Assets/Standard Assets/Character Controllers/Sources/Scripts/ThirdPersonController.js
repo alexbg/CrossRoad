@@ -126,7 +126,7 @@ public var jumpPoseAnimation : AnimationClip;
 
 function UpdateSmoothedMovementDirection ()
 {
-	var cameraTransform = Camera.main.transform;
+	var cameraTransform = this.camera.transform;
 	var grounded = IsGrounded();
 	
 	// Forward vector relative to the camera along the x-z plane	

@@ -9,6 +9,7 @@ namespace CrossRoad.Configurations{
 			//PlayerPrefs.DeleteAll ();
 			PlayerPrefs.SetString("username","Pepe");
 			//PlayerPrefs.Save ();
+			//Debug.Log (Input.GetJoystickNames ()[0]);
 		}
 
 		void OnLevelWasLoaded(int level) {

@@ -33,8 +33,8 @@ private var targetHeight = 100000.0;
 
 function Awake ()
 {
-	if(!cameraTransform && Camera.main)
-		cameraTransform = Camera.main.transform;
+	if(!cameraTransform && this.camera)
+		cameraTransform = this.camera.transform;
 	if(!cameraTransform) {
 		Debug.Log("Please assign a camera to the ThirdPersonCamera script.");
 		enabled = false;	

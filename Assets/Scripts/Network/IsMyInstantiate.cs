@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CrossRoad.Character;
 
 public class IsMyInstantiate : MonoBehaviour {
 	public GameObject mainCamera;

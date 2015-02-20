@@ -32,10 +32,10 @@ function Update () {
 	}
 	
 	// Rotate the input vector into camera space so up is camera's up and right is camera's right
-	directionVector = Camera.main.transform.rotation * directionVector;
+	directionVector = this.camera.transform.rotation * directionVector;
 	
 	// Rotate input vector to be perpendicular to character's up vector
-	var camToCharacterSpace = Quaternion.FromToRotation(-Camera.main.transform.forward, transform.up);
+	var camToCharacterSpace = Quaternion.FromToRotation(-this.camera.transform.forward, transform.up);
 	directionVector = (camToCharacterSpace * directionVector);
 	
 	// Apply the direction to the CharacterMotor
