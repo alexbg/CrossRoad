@@ -10,13 +10,15 @@ namespace CrossRoad.SaveData{
 		public Toggle lamp;
 		public Text text;
 
-		void Start(){
-			// Pongo el valor inicial de las lamparas
-			PlayerPrefs.SetInt ("lamp", 0);
-			// Pongo un modo de juego por defecto
+		void awake(){
+			/*PlayerPrefs.SetInt ("players", 1);
 			PlayerPrefs.SetInt ("mode", 0);
-			//this.saveData ();
-			PlayerPrefs.SetInt ("players", 1);
+			PlayerPrefs.SetInt ("lamp", 0);
+			Debug.Log("awake");*/
+		}
+
+		void Start(){
+
 		}
 
 		public void saveWalls(){
@@ -38,12 +40,12 @@ namespace CrossRoad.SaveData{
 		}
 
 		public void saveGameMode(int gameMode){
-			//Debug.Log (PlayerPrefs.GetInt("lamp"));
+			Debug.Log ("Jugadores: "+PlayerPrefs.GetInt("players"));
 			PlayerPrefs.SetInt ("mode", gameMode);
 
-			if(this.lamp.isOn)
-				PlayerPrefs.SetInt ("lamp", 1);
-			Debug.Log (PlayerPrefs.GetInt("lamp"));
+			/*if(this.lamp.isOn)
+				PlayerPrefs.SetInt ("lamp", 1);*/
+			Debug.Log ("Lamparas: "+PlayerPrefs.GetInt("lamp"));
 			//this.saveData ();
 
 		}
@@ -67,7 +69,7 @@ namespace CrossRoad.SaveData{
 
 		public void saveInt(string name){
 			PlayerPrefs.SetInt (name, int.Parse(text.text));
-			//Debug.Log (name + " " + text.text);
+			Debug.Log (name + " " + text.text);
 		}
 
 		public void saveFloat(string name){

@@ -54,10 +54,16 @@ namespace CrossRoad.Menu{
 
 			Time.timeScale = time;
 			//Debug.Log ("Se ha despausado");
-			foreach(MouseLook look in this.character.gameObject.GetComponentsInChildren<MouseLook>()){
-				look.enabled = pause;
+			if(!PositionCharacter.multiplayer){
+				foreach(MouseLook look in this.character.gameObject.GetComponentsInChildren<MouseLook>()){
+					look.enabled = pause;
+				}
+				this.character.gameObject.GetComponent<MoveCharacter>().enabled = pause;
+			}else{
+				foreach(MouseLookYoystick look in this.character.gameObject.GetComponentsInChildren<MouseLookYoystick>()){
+					look.enabled = pause;
+				}
 			}
-			this.character.gameObject.GetComponent<MoveCharacter>().enabled = pause;
 			//Screen.showCursor = pause;
 		}
 

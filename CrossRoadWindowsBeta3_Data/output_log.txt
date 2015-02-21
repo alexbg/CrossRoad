@@ -1,0 +1,140 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7800 Series (ID=0x6818)
+    Vendor:   ATI
+    VRAM:     2027 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.063 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta3_Data\Managed\System.dll (this message is harmless)
+players 2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Jugadores: 2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Lamparas: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 5.415239 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 1304.
+Total: 4.653291 ms (FindLiveObjects: 0.094723 ms CreateObjectMapping: 0.025600 ms MarkObjects: 0.380494 ms  DeleteObjects: 3.358203 ms)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Jugador0 esta en posicion
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Jugador1 esta en posicion
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallGround
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallGround
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ButtonTrap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Trap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Sonido
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje Trigger:Trap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Colision con:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Sonido
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje Trigger:Trap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Ball
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ButtonTrap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Trap
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WallGround
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Ha colisionado con el personaje No trigger:Untagged
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Se ha pulsado el boton escape
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 2.773542 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 715 unused Assets to reduce memory usage. Loaded Objects now: 826.
+Total: 4.018067 ms (FindLiveObjects: 0.104323 ms CreateObjectMapping: 0.029121 ms MarkObjects: 0.721946 ms  DeleteObjects: 2.431129 ms)
+

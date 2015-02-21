@@ -23,8 +23,8 @@ namespace CrossRoad.Character{
 		// Texto que muestra que has ganado
 		public Text winnerText;//
 		public GameObject loserText;//
-		public MouseLook mouseCharacter;//
-		public MouseLook mouseHead;//
+		public MouseLookYoystick mouseCharacter;//
+		public MouseLookYoystick mouseHead;//
 		public Animator lightController;//
 		public Slider energy;//
 		//public Transform ignoreCollision;
@@ -99,7 +99,8 @@ namespace CrossRoad.Character{
 				if(this.camera.fieldOfView < this.fieldOfView)
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
-				this.audio.pitch = 0.9f;
+				//this.audio.pitch = 0.9f;
+				EmitSoundsMultiplayer.changePicth(0,0.9f);
 				
 			}else if(Input.GetButton("RunPlayer1") || Input.GetAxis("RunPlayer1") > 0){
 				this.maxVelocity = this.maxRun;
@@ -109,16 +110,16 @@ namespace CrossRoad.Character{
 				if(this.camera.fieldOfView > 55)
 					// Reduce el field -10 cada segundo
 					this.camera.fieldOfView -= 10 * Time.deltaTime;
-				this.audio.pitch = 1.3f;
-				
+				//this.audio.pitch = 1.3f;
+				EmitSoundsMultiplayer.changePicth(0,1.3f);
 			}else{
 				this.maxVelocity = this.maxWalk;
 				this.lightController.SetBool("isRunning",false);
 				if(this.camera.fieldOfView < this.fieldOfView)
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
-				this.audio.pitch = 1.0f;
-				
+				//this.audio.pitch = 1.0f;
+				EmitSoundsMultiplayer.changePicth(0,1.0f);
 			}
 			
 			// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
@@ -141,7 +142,7 @@ namespace CrossRoad.Character{
 				EmitSoundsMultiplayer.stopSound(0);
 			}
 
-			Debug.Log (Input.GetAxis ("VerticalPlayer1"));
+			//Debug.Log (Input.GetAxis ("VerticalPlayer1"));
 
 		}
 		

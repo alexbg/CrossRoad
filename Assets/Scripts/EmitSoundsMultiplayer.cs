@@ -48,5 +48,9 @@ namespace CrossRoad.Audio.Player1{
 			return EmitSoundsMultiplayer.source [sound].isPlaying;
 		}
 
+		public static void changePicth(int sound, float pitch){
+			EmitSoundsMultiplayer.source [sound].pitch = pitch;
+		}
+
 	}
 }

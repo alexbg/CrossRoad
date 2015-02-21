@@ -21,8 +21,8 @@ namespace CrossRoad.Character{
 		// Texto que muestra que has ganado
 		public Text winnerText;//
 		public GameObject loserText;//
-		public MouseLook mouseCharacter;//
-		public MouseLook mouseHead;//
+		public MouseLookYoystick mouseCharacter;//
+		public MouseLookYoystick mouseHead;//
 		public Animator lightController;//
 		public Slider energy;//
 		//public Transform ignoreCollision;
@@ -60,6 +60,7 @@ namespace CrossRoad.Character{
 				this.isTired = true;
 				this.lightController.SetBool("isRunning",false);
 				//if(!this.headSound.isPlaying)
+
 				EmitSoundMultiplayer2.emitSound(2);
 			}
 			
@@ -68,6 +69,7 @@ namespace CrossRoad.Character{
 				this.isTired = false;
 				this.lightController.SetBool("isTired",false);
 				EmitSoundMultiplayer2.stopSound(2);
+
 			}
 			
 			// controla la barra de energia
@@ -96,7 +98,8 @@ namespace CrossRoad.Character{
 				if(this.camera.fieldOfView < this.fieldOfView)
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
-				this.audio.pitch = 0.9f;
+				//this.audio.pitch = 0.9f;
+				EmitSoundMultiplayer2.changePicth(0,0.9f);
 				
 			}else if(Input.GetAxis("RunPlayer2") > 0){
 				this.maxVelocity = this.maxRun;
@@ -106,16 +109,16 @@ namespace CrossRoad.Character{
 				if(this.camera.fieldOfView > 55)
 					// Reduce el field -10 cada segundo
 					this.camera.fieldOfView -= 10 * Time.deltaTime;
-				this.audio.pitch = 1.3f;
-				
+				//this.audio.pitch = 1.3f;
+				EmitSoundMultiplayer2.changePicth(0,1.3f);
 			}else{
 				this.maxVelocity = this.maxWalk;
 				this.lightController.SetBool("isRunning",false);
 				if(this.camera.fieldOfView < this.fieldOfView)
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
-				this.audio.pitch = 1.0f;
-				
+				//this.audio.pitch = 1.0f;
+				EmitSoundMultiplayer2.changePicth(0,1f);
 			}
 			
 			// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
@@ -146,11 +149,12 @@ namespace CrossRoad.Character{
 			// Movimiento vertical la z
 			if(/*Input.GetButton("Vertical") && */this.canJump){
 				this.rigidbody.AddForce(transform.forward * this.force * Input.GetAxis("VerticalPlayer2"),ForceMode.Acceleration);
+				this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("HorizontalPlayer2"),ForceMode.Acceleration);
 			}
 			
 			// Movimiento horizontal la x
 			if(/*Input.GetButton("Horizontal") && */this.canJump){
-				this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("HorizontalPlayer2"),ForceMode.Acceleration);
+				//this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("HorizontalPlayer2"),ForceMode.Acceleration);
 			}
 			
 			// Controla la velocidad

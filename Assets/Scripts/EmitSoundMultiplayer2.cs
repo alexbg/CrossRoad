@@ -47,6 +47,10 @@ namespace CrossRoad.Audio.Player2{
 		public static bool isPlaying(int sound){
 			return EmitSoundMultiplayer2.source [sound].isPlaying;
 		}
+
+		public static void changePicth(int sound, float pitch){
+			EmitSoundMultiplayer2.source [sound].pitch = pitch;
+		}
 		
 	}
 }

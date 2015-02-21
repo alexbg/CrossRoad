@@ -46,7 +46,7 @@ public class EnableTraps : MonoBehaviour {
 	public void fireTrap(Collider info){
 		Debug.Log ("Colision con:" + this.trap.tag);
 		string tag = info.tag;
-		if (this.isEnable && info.tag == "Player" || info.tag == "Player2") {
+		if (this.isEnable && (info.tag == "Player" || info.tag == "Player2")) {
 			switch(this.trap.tag){
 				case "Ball":
 					trap.rigidbody.isKinematic = false;
@@ -94,6 +94,7 @@ public class EnableTraps : MonoBehaviour {
 						this.genericTrapsActions();
 					else
 						this.genericTrapsActionsMultiplayer(tag,3);
+
 					break;
 
 				case "SpikeGround":
@@ -135,6 +136,8 @@ public class EnableTraps : MonoBehaviour {
 	/// <param name="sound">Sound.</param>
 	public void genericTrapsActionsMultiplayer(string tag, int sound){
 
+
+		Debug.Log("Sonido");
 		if(tag == "Player"){
 			EmitSoundsMultiplayer.emitSound(sound);
 		}
