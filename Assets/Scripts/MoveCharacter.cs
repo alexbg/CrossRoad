@@ -164,8 +164,8 @@ namespace CrossRoad.Character{
 		// Es collisionEnter y no trigger porque la bola tiene un rigidbody, asiq niega el rigidbody del padre
 		// y utiliza el suyo propio
 		void OnCollisionEnter(Collision info) {
-			Debug.Log (info.collider.name);
-			Debug.Log ("Ha colisionado con el personaje No trigger:" + info.collider.tag);
+			//Debug.Log (info.collider.name);
+			//Debug.Log ("Ha colisionado con el personaje No trigger:" + info.collider.tag);
 			switch(info.collider.tag){
 				case "Ball":
 					this.rigidbody.freezeRotation = false;

@@ -13,10 +13,10 @@ public class FallDown : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(PlayerPrefs.GetInt("mode") == 1){
+		/*if(PlayerPrefs.GetInt("mode") == 1){
 			this.enable = true;
 			Debug.Log ("Modo de juego");
-		}
+		}*/
 			
 
 		this.objectToFall = 1;
@@ -25,7 +25,7 @@ public class FallDown : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(this.enable){
+		//if(this.enable){
 			this.time += Time.deltaTime;
 			// Cada 5 segundos se cae uno de los muros
 			if(this.time >= 4 && this.objectToFall < this.objects.Length){
@@ -40,6 +40,6 @@ public class FallDown : MonoBehaviour {
 				this.objects[this.objectToFall].rigidbody.AddForce(-transform.up,ForceMode.Impulse);
 				this.objectToFall++;
 			}
-		}
+		//}
 	}
 }
