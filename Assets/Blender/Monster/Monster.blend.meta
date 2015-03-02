@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43f1a3f1d44c219498e79cc1a77de0ab
+guid: 8e1390d84ac458a40a6c662c09b9aec9
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -11,7 +11,7 @@ ModelImporter:
     7400000: Default Take
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 0
   animations:

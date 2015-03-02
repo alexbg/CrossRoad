@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CrossRoad.Audio.Player1;
+using CrossRoad.Audio.Player2;
 
 public class ModeMonster : MonoBehaviour {
 
@@ -16,35 +18,31 @@ public class ModeMonster : MonoBehaviour {
 	//public Animator animationMonster;
 	public Transform monster;
 	private Vector3 position;
-	
+
+	// 0: dead
+	// 1: start
+	private AudioSource[] audios;
 	// boolean
 	private bool isMove;
 	private float time;
+	private bool start;
 
 	// Use this for initialization
 	void Start () {
 		//Debug.Log ("Monster");
-		this.velocity = 8;
+		this.velocity = 4;
 		this.left = Quaternion.Euler (0, 270, 0);
 		this.right = Quaternion.Euler (0, 90, 0);
 		this.isTurned = false;
 		this.isMove = false;
+		this.audios = this.gameObject.GetComponents<AudioSource> ();
+		//this.audios [1].Play ();
 
-
-		//this.left = Quaternion.Euler (0, -90, 0);
-		//this.right = Quaternion.Euler (0, 90, 0);
-		//this.isTurned = false;
-		//this.transform.rotation = this.left;
-		//this.transform.rotation = this.right;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*Vector3 forward = this.transform.TransformDirection (this.transform.forward);
-		Debug.DrawRay(this.transform.position, this.transform.forward * 10f, Color.green);
-		if(Physics.Raycast(this.transform.position,this.transform.forward,10f)){
-			Debug.Log ("Mosntruo golpeado pared");
-		}*/
+
 
 		Debug.DrawRay(this.transform.position, -this.transform.right * 6f, Color.red);
 		Debug.DrawRay(this.transform.position, this.transform.right * 6f, Color.green);
@@ -55,10 +53,13 @@ public class ModeMonster : MonoBehaviour {
 			this.moveToPosition();
 			if(this.time >= 2){
 				this.isMove = false;
-				this.velocity = 8;
+				this.velocity = 4;
+				//this.animationMonster.SetBool ("collision", false);
 			}
 			this.time += Time.deltaTime;
 		}
+
+
 	}
 
 	void OnTriggerEnter(Collider info){
@@ -71,13 +72,28 @@ public class ModeMonster : MonoBehaviour {
 			//this.animationMonster.SetBool("collision",true);
 			collisionMonster();
 		}
+
+		if(info.transform.tag == "Player" || info.transform.tag == "Player2"){
+			if(!PositionCharacter.multiplayer){
+				this.audios[0].Play();
+			}else{
+				if(info.transform.tag == "Player"){
+					EmitSoundsMultiplayer.emitSound(5);
+				}
+				
+				if(info.transform.tag == "Player2"){
+					EmitSoundMultiplayer2.emitSound(5);
+				}
+			}
+		}
 	}
 
 
 	public void collisionMonster(){
 		//this.animationMonster.SetBool ("collision", false);
+		//this.animationMonster.SetBool ("collision", true);
 		RaycastHit hit;
-		
+
 		if(Physics.Raycast(this.transform.position,-this.transform.up,out hit, 10f)){
 			Debug.Log ("Ha colisionado el rayo abajo");
 			if(Physics.Raycast(this.transform.position,-this.transform.right, 6f)){

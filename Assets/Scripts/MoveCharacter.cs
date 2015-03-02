@@ -209,6 +209,12 @@ namespace CrossRoad.Character{
 				//this.headSound.Stop();
 				this.genericActionsCollision();
 				break;
+			case "Monster":
+				this.rigidbody.freezeRotation = false;
+				// Lo impulsa para que se caiga cuando le golpea el monstruo
+				this.rigidbody.AddForce(transform.forward,ForceMode.Impulse);
+				this.genericActionsCollision();
+				break;
 			}
 
 		}
