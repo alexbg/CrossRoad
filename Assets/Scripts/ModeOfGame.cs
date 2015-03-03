@@ -15,7 +15,7 @@ public class ModeOfGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//PlayerPrefs.SetInt ("mode", 2);
+		PlayerPrefs.SetInt ("mode", 0);
 		switch(PlayerPrefs.GetInt("mode")){
 			case 0:
 				Debug.Log ("Ha elegido modo normal");

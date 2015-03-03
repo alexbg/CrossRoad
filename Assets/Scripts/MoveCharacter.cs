@@ -32,7 +32,7 @@ namespace CrossRoad.Character{
 		private bool isTired;//
 		private float maxVelocity;//
 		private RaycastHit info; //
-		public AudioSource headSound;//
+		public AudioSource headSound;// 
 		//private bool moving;
 		// Use this for initialization
 		void Start () {
