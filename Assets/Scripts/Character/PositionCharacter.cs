@@ -8,8 +8,11 @@ using System.Collections;
 public class PositionCharacter : MonoBehaviour {
 
 	// Use this for initialization
+	// Tiene los 4 gameobject que son los personajes para multijugador
 	public GameObject[] characteres;
+	// Tiene el gameobject del personaje principal
 	public GameObject principal;
+	// El audio que se usa para el multijugador
 	public GameObject audioListener;
 	// Al ser static, se puede acceder desde cualquier sitio, y no esta en ningun
 	// namespace asique con poner el nombre de la variable clase.nombreVariable funciona
@@ -27,7 +30,9 @@ public class PositionCharacter : MonoBehaviour {
 			this.audioListener.SetActive(true);
 			// El 0 es el character 1
 			for(int i = 0;i<=PlayerPrefs.GetInt("players")-1;i++){
+				// Se activa el gameobject
 				this.characteres[i].SetActive(true);
+				//Configura la camara segun el numero de jugadores
 				this.characteres[i].GetComponentInChildren<Camera>().rect = this.changeCamera(i,PlayerPrefs.GetInt("players"));
 				Debug.Log ("Jugador"+i+" esta en posicion");
 			}	
@@ -37,9 +42,9 @@ public class PositionCharacter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 	
-	}
+	}*/
 	// Configura la camara para 2,3 o 4 jugadores
 	private Rect changeCamera(int character,int players){
 		Rect rect = new Rect(0,0,0,0);

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using CrossRoad.Audio.Player1;
+using CrossRoad.Audio;
 
 namespace CrossRoad.Character{
 
@@ -38,6 +38,7 @@ namespace CrossRoad.Character{
 		private RaycastHit info;
 		public AudioSource headSound;
 		public Camera camera;
+		public EmitSoundsMultiplayer soundMultiplayer;
 		//private bool moving;
 		// Use this for initialization
 		void Start () {
@@ -62,7 +63,8 @@ namespace CrossRoad.Character{
 				this.isTired = true;
 				this.lightController.SetBool("isRunning",false);
 				//if(!this.headSound.isPlaying)
-				EmitSoundsMultiplayer.emitSound(2);
+				//EmitSoundsMultiplayer.emitSound(2,1);
+				soundMultiplayer.emitSound(2,1);
 			}
 			
 			// Quita el cansancion al personaje
@@ -70,7 +72,7 @@ namespace CrossRoad.Character{
 				this.isTired = false;
 				this.lightController.SetBool("isTired",false);
 				//this.headSound.Stop();
-				EmitSoundsMultiplayer.stopSound(2);
+				soundMultiplayer.stopSound(2,1);
 			}
 			
 			// controla la barra de energia
@@ -100,7 +102,7 @@ namespace CrossRoad.Character{
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
 				//this.audio.pitch = 0.9f;
-				EmitSoundsMultiplayer.changePicth(0,0.9f);
+				soundMultiplayer.changePicth(0,0.9f,1);
 				
 			}else if(Input.GetButton("RunPlayer1") || Input.GetAxis("RunPlayer1") > 0){
 				this.maxVelocity = this.maxRun;
@@ -111,7 +113,7 @@ namespace CrossRoad.Character{
 					// Reduce el field -10 cada segundo
 					this.camera.fieldOfView -= 10 * Time.deltaTime;
 				//this.audio.pitch = 1.3f;
-				EmitSoundsMultiplayer.changePicth(0,1.3f);
+				soundMultiplayer.changePicth(0,1.3f,1);
 			}else{
 				this.maxVelocity = this.maxWalk;
 				this.lightController.SetBool("isRunning",false);
@@ -119,7 +121,7 @@ namespace CrossRoad.Character{
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
 				//this.audio.pitch = 1.0f;
-				EmitSoundsMultiplayer.changePicth(0,1.0f);
+				soundMultiplayer.changePicth(0,1.0f,1);
 			}
 			
 			// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
@@ -135,11 +137,11 @@ namespace CrossRoad.Character{
 			}
 			// MODIFICADO PARA MULTIPLAYER
 			if((Input.GetAxis("VerticalPlayer1") != 0|| Input.GetAxis("HorizontalPlayer1") != 0) && this.canJump){
-				if(!EmitSoundsMultiplayer.isPlaying(0)){
-					EmitSoundsMultiplayer.emitSound(0);
+				if(!soundMultiplayer.isPlaying(0,1)){
+					soundMultiplayer.emitSound(0,1);
 				}
 			}else{
-				EmitSoundsMultiplayer.stopSound(0);
+				soundMultiplayer.stopSound(0,1);
 			}
 
 			//Debug.Log (Input.GetAxis ("VerticalPlayer1"));
@@ -234,7 +236,7 @@ namespace CrossRoad.Character{
 		/// </summary>
 		public void genericActionsCollision(){
 			this.loserText.SetActive(true);
-			EmitSoundsMultiplayer.stopSound(2);
+			soundMultiplayer.stopSound(2,1);
 		}
 		
 		
@@ -249,7 +251,7 @@ namespace CrossRoad.Character{
 			this.mouseHead.enabled = false;
 			this.mouseCharacter.enabled = false;
 			Screen.showCursor = true;
-			EmitSoundsMultiplayer.stopSound(2);
+			soundMultiplayer.stopSound(2,1);
 		}
 		
 		

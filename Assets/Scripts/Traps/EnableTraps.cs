@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CrossRoad.Audio.Player1;
-using CrossRoad.Audio.Player2;
+using CrossRoad.Audio;
+//using CrossRoad.Audio.Player2;
 
 public class EnableTraps : MonoBehaviour {
 
@@ -10,6 +10,7 @@ public class EnableTraps : MonoBehaviour {
 	// If this is true then the trap will be enabled when the character enter in collision
 	private bool isEnable;
 	public AudioSource globalSound;
+	public EmitSoundsMultiplayer soundMultiplayer;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,10 @@ public class EnableTraps : MonoBehaviour {
 			this.collider.enabled = true;
 			this.renderer.enabled = true;
 		}
+		// Obtiene el EmitSoundsMultiplayer que esta en el objeto AudioListener
+		// que es el que se encarga ed los sonidos en multiplayer
+		if(PositionCharacter.multiplayer)
+			this.soundMultiplayer = GameObject.Find ("AudioListener").GetComponent<EmitSoundsMultiplayer> ();
 
 	}
 	
@@ -134,16 +139,16 @@ public class EnableTraps : MonoBehaviour {
 	/// </summary>
 	/// <param name="tag">Tag.</param>
 	/// <param name="sound">Sound.</param>
-	public void genericTrapsActionsMultiplayer(string tag, int sound){
+	public void genericTrapsActionsMultiplayer(string tag, byte sound){
 
 
 		Debug.Log("Sonido");
 		if(tag == "Player"){
-			EmitSoundsMultiplayer.emitSound(sound);
+			soundMultiplayer.emitSound(sound,1);
 		}
 
 		if(tag == "Player2"){
-			EmitSoundMultiplayer2.emitSound(sound);
+			soundMultiplayer.emitSound(sound,2);
 		}
 		// No los destruyo porque si no, no se emite el sonido	
 		this.isEnable = false;

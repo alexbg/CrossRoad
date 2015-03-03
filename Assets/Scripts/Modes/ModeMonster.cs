@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CrossRoad.Audio.Player1;
-using CrossRoad.Audio.Player2;
+using CrossRoad.Audio;
+//using CrossRoad.Audio.Player2;
 
 public class ModeMonster : MonoBehaviour {
 
@@ -18,6 +18,8 @@ public class ModeMonster : MonoBehaviour {
 	//public Animator animationMonster;
 	public Transform monster;
 	private Vector3 position;
+
+	public EmitSoundsMultiplayer soundMultiplayer;
 
 	// 0: dead
 	// 1: start
@@ -78,11 +80,11 @@ public class ModeMonster : MonoBehaviour {
 				this.audios[0].Play();
 			}else{
 				if(info.transform.tag == "Player"){
-					EmitSoundsMultiplayer.emitSound(5);
+					soundMultiplayer.emitSound(5,1);
 				}
 				
 				if(info.transform.tag == "Player2"){
-					EmitSoundMultiplayer2.emitSound(5);
+					soundMultiplayer.emitSound(5,2);
 				}
 			}
 		}

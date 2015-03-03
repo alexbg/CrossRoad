@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using CrossRoad.Audio.Player2;
+using CrossRoad.Audio;
 
 namespace CrossRoad.Character{
 	/// <summary>
@@ -36,6 +36,7 @@ namespace CrossRoad.Character{
 		private RaycastHit info;
 		public AudioSource headSound;
 		public Camera camera;
+		public EmitSoundsMultiplayer soundMultiplayer;
 		//private bool moving;
 		// Use this for initialization
 		void Start () {
@@ -61,14 +62,14 @@ namespace CrossRoad.Character{
 				this.lightController.SetBool("isRunning",false);
 				//if(!this.headSound.isPlaying)
 
-				EmitSoundMultiplayer2.emitSound(2);
+				soundMultiplayer.emitSound(2,2);
 			}
 			
 			// Quita el cansancion al personaje
 			if(this.isTired && this.energy.value == 100){
 				this.isTired = false;
 				this.lightController.SetBool("isTired",false);
-				EmitSoundMultiplayer2.stopSound(2);
+				soundMultiplayer.stopSound(2,2);
 
 			}
 			
@@ -99,7 +100,7 @@ namespace CrossRoad.Character{
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
 				//this.audio.pitch = 0.9f;
-				EmitSoundMultiplayer2.changePicth(0,0.9f);
+				soundMultiplayer.changePicth(0,0.9f,2);
 				
 			}else if(Input.GetAxis("RunPlayer2") > 0){
 				this.maxVelocity = this.maxRun;
@@ -110,7 +111,7 @@ namespace CrossRoad.Character{
 					// Reduce el field -10 cada segundo
 					this.camera.fieldOfView -= 10 * Time.deltaTime;
 				//this.audio.pitch = 1.3f;
-				EmitSoundMultiplayer2.changePicth(0,1.3f);
+				soundMultiplayer.changePicth(0,1.3f,2);
 			}else{
 				this.maxVelocity = this.maxWalk;
 				this.lightController.SetBool("isRunning",false);
@@ -118,7 +119,7 @@ namespace CrossRoad.Character{
 					// Aumenta el field -10 cada segundo
 					this.camera.fieldOfView += 10 * Time.deltaTime;
 				//this.audio.pitch = 1.0f;
-				EmitSoundMultiplayer2.changePicth(0,1f);
+				soundMultiplayer.changePicth(0,1f,2);
 			}
 			
 			// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
@@ -135,11 +136,11 @@ namespace CrossRoad.Character{
 			
 			// MODIFICADO PARA MULTIPLAYER
 			if((Input.GetAxis("VerticalPlayer2") != 0 || Input.GetAxis("HorizontalPlayer2") != 0) && this.canJump){
-				if(!EmitSoundMultiplayer2.isPlaying(0)){
-					EmitSoundMultiplayer2.emitSound(0);
+				if(!soundMultiplayer.isPlaying(0,2)){
+					soundMultiplayer.emitSound(0,2);
 				}
 			}else{
-				EmitSoundMultiplayer2.stopSound(0);
+				soundMultiplayer.stopSound(0,2);
 			}
 			
 		}
@@ -232,7 +233,7 @@ namespace CrossRoad.Character{
 		/// </summary>
 		public void genericActionsCollision(){
 			this.loserText.SetActive(true);
-			EmitSoundMultiplayer2.stopSound(2);
+			soundMultiplayer.stopSound(2,2);
 		}
 		
 		
@@ -247,7 +248,7 @@ namespace CrossRoad.Character{
 			this.mouseHead.enabled = false;
 			this.mouseCharacter.enabled = false;
 			Screen.showCursor = true;
-			EmitSoundMultiplayer2.stopSound(2);
+			soundMultiplayer.stopSound(2,2);
 		}
 		
 		

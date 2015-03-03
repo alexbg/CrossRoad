@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+// ELIMINAR ESTA CLASE
 namespace CrossRoad.Audio.Player2{
 	/// <summary>
 	/// Emit sound multiplayer2.
