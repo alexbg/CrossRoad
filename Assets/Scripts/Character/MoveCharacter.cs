@@ -7,16 +7,16 @@ namespace CrossRoad.Character{
 
 	public class MoveCharacter : MonoBehaviour {
 
-		public float acceleration;//
+		//public float acceleration;
 		public float force;//
 		private float maxWalk;//
 		private float maxRun;//
 		private float maxWalkTired;//
 		private float forceJump;//
 		private bool isDead; //
-		private bool isRunning;
-		private bool isWalking;
-		//public int maxHeight;
+		private bool isRunning; //
+		private bool isWalking; //
+
 		// Canvas del menu principal
 		public Canvas menu;
 		// Texto que muestra que has ganado
@@ -26,17 +26,16 @@ namespace CrossRoad.Character{
 		public MouseLook mouseHead;//
 		public Animator lightController;//
 		public Slider energy;//
-		//public Transform ignoreCollision;
+
 		private int fieldOfView;
-		//private float y;
-		//private float x;
+
 		private bool canJump;//
 		private float time;//
 		private bool isTired;//
 		private float maxVelocity;//
 		private RaycastHit info; //
 		public AudioSource headSound;// 
-		//private bool moving;
+
 		// Use this for initialization
 		void Start () {
 			Cursor.visible = false;
@@ -58,6 +57,7 @@ namespace CrossRoad.Character{
 		void Update () {
 			Debug.DrawRay(this.transform.position, -this.transform.up * 1.1f, Color.red);
 			this.time += Time.deltaTime;
+
 			// Pone al personaje cansado
 			if(this.energy.value == 0){
 				this.isTired = true;
@@ -71,30 +71,22 @@ namespace CrossRoad.Character{
 				this.isTired = false;
 				this.lightController.SetBool("isTired",false);
 				this.headSound.Stop();
+				this.isWalking = true;
 			}
 
 			// controla la barra de energia
-			if((Input.GetButton("Run") || Input.GetAxis("Run") > 0 )&& !this.isTired  && !this.isDead){
+			// Si se gasta, esta corriendo
+			// En caso contrario esta caminando
+			if((Input.GetButton("Run") || Input.GetAxis("Run") > 0 ) && !this.isTired && !this.isDead){
 				this.energy.value -= 20 * Time.deltaTime;
+				this.isRunning = true;
 			}else{
 				this.energy.value += 10 * Time.deltaTime;
+				this.isWalking = true;
 			}
 
 			// Controla que el personaje pueda saltar si esta tocando el suelo
 			// Lanza un raycast en direccion negativa de la y. Si el raycast toca algo, es que el personaje esta en el suelo
-			/*if(Physics.Raycast(this.transform.position,-transform.up,1.1f) && !this.canJump){
-				Debug.Log("Puedes saltar");
-				if(!this.canJump){
-					this.canJump = true;
-					// Para que no haya problemas con la velocidad, se pone a 0 la velocidad de caida cuando
-					// el raycast toca el objeto con el que choca
-					this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x,0,this.GetComponent<Rigidbody>().velocity.z);
-				}
-			}
-			else{
-				this.canJump = false;
-			}*/
-
 			// Decide si puede saltar o no
 			if(Physics.Raycast(this.transform.position,-transform.up,1.1f)){
 				//Debug.Log("Puedes saltar");
@@ -112,7 +104,6 @@ namespace CrossRoad.Character{
 			// El maximo fieldOfView es 60, se cambia en la variable fieldOfView
 			if(this.isTired){
 				this.maxVelocity = this.maxWalkTired;
-
 				this.lightController.SetBool("isTired",true);
 				if(Camera.main.fieldOfView < this.fieldOfView)
 					// Aumenta el field -10 cada segundo
@@ -120,32 +111,30 @@ namespace CrossRoad.Character{
 				this.GetComponent<AudioSource>().pitch = 0.9f;
 				this.changeStateOfMove(2);
 
-			}else if((Input.GetButton("Run") || Input.GetAxis("Run") > 0) && this.isRunning){
-				this.maxVelocity = this.maxRun;
-				Camera.main.GetComponent<CameraMotionBlur>().enabled = true;
-				Camera.main.GetComponent<DepthOfField>().enabled = false;
-				// Controla que no se inicie la animacion cuando este saltando
-				if(this.canJump)
-					this.lightController.SetBool("isRunning",true);
-				if(Camera.main.fieldOfView > 55)
-					// Reduce el field -10 cada segundo
-					Camera.main.fieldOfView -= 10 * Time.deltaTime;
+			}else if(this.isRunning){
+				//this.isRunning = true;
+				if(this.isRunning){
+					this.maxVelocity = this.maxRun;
+					// Controla que no se inicie la animacion cuando este saltando
+					if(this.canJump)
+						this.lightController.SetBool("isRunning",true);
+					if(Camera.main.fieldOfView > 55)
+						// Reduce el field -10 cada segundo
+						Camera.main.fieldOfView -= 10 * Time.deltaTime;
 
-				this.GetComponent<AudioSource>().pitch = 1.3f;
-				this.changeStateOfMove(1);
-
-			}else{
-				if(this.isWalking){
-					this.maxVelocity = this.maxWalk;
-					//Camera.main.GetComponent<CameraMotionBlur>().enabled = false;
-					//Camera.main.GetComponent<DepthOfField>().enabled = false;
-					this.lightController.SetBool("isRunning",false);
-					if(Camera.main.fieldOfView < this.fieldOfView)
-						// Aumenta el field -10 cada segundo
-						Camera.main.fieldOfView += 10 * Time.deltaTime;
-					this.GetComponent<AudioSource>().pitch = 1.0f;
-					this.changeStateOfMove(0);
+					this.GetComponent<AudioSource>().pitch = 1.3f;
+					this.changeStateOfMove(1);
 				}
+
+			}else if(this.isWalking){
+
+				this.maxVelocity = this.maxWalk;
+				this.lightController.SetBool("isRunning",false);
+				if(Camera.main.fieldOfView < this.fieldOfView)
+					// Aumenta el field -10 cada segundo
+					Camera.main.fieldOfView += 10 * Time.deltaTime;
+				this.GetComponent<AudioSource>().pitch = 1.0f;
+				this.changeStateOfMove(0);
 
 			}
 
@@ -168,20 +157,15 @@ namespace CrossRoad.Character{
 			}else{
 				this.GetComponent<AudioSource>().Stop();
 			}
-			//Debug.Log (this.canJump);
+			Debug.Log (this.GetComponent<Rigidbody>().velocity.magnitude);
 		}
 
 		void FixedUpdate(){
 
-			// Movimiento vertical la z
-			if(/*Input.GetButton("Vertical") && */this.canJump){
+			// Movimiento vertical la z y horizontal la x
+			if(this.canJump){
 				this.GetComponent<Rigidbody>().AddForce(transform.forward * this.force * Input.GetAxis("Vertical"),ForceMode.Acceleration);
 				this.GetComponent<Rigidbody>().AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
-			}
-
-			// Movimiento horizontal la x
-			if(/*Input.GetButton("Horizontal") && */this.canJump){
-				//this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
 			}
 
 			// Controla la velocidad
@@ -189,9 +173,6 @@ namespace CrossRoad.Character{
 				this.GetComponent<Rigidbody>().velocity = this.GetComponent<Rigidbody>().velocity.normalized * this.maxVelocity;
 			}
 
-
-			//Debug.Log (this.rigidbody.velocity.magnitude);
-			//this.rigidbody.ve
 		}
 		// COLISIONES
 
@@ -283,28 +264,34 @@ namespace CrossRoad.Character{
 
 		/// <summary>
 		/// Changes the state of move.
+		/// Evito que este poniendo los valores de velocidad, sonido, vista de la camara, etc en cada frame
 		/// 0: walking
 		/// 1: running
 		/// 2: tired;
 		/// </summary>
 		/// <param name="state">State.</param>
 		private void changeStateOfMove(byte state){
+			// this.isTired no se pone a false porque debe de  ser el estado principal cuando esta cansado
+			// Por lo que no cambia segun se pulse un boton o otro, por lo que no se puede cambiar como el 
+			// this.isRunning o this.isWalking que dependen de pulsar uno o varios botones para cambiar
+			this.isRunning = false;
+			this.isWalking = false;
 			switch(state){
 				case 0:
-					this.isRunning = false;
-					this.isTired = false;
+					//this.isRunning = false;
+					//this.isTired = false;
 					Camera.main.GetComponent<CameraMotionBlur>().enabled = false;
 					Camera.main.GetComponent<DepthOfField>().enabled = false;
 					break;
 				case 1:
-					this.isRunning = true;
-					this.isTired = false;
+					//this.isRunning = true;
+					//this.isTired = false;
 					Camera.main.GetComponent<CameraMotionBlur>().enabled = true;
 					Camera.main.GetComponent<DepthOfField>().enabled = false;
 					break;
 				case 2:
-					this.isRunning = false;
-					this.isTired = true;
+					//this.isRunning = false;
+					//this.isTired = true;
 					Camera.main.GetComponent<CameraMotionBlur>().enabled = false;
 					Camera.main.GetComponent<DepthOfField>().enabled = true;
 					break;
