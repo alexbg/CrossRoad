@@ -26,7 +26,7 @@ public class NetworkInGame : MonoBehaviour {
 		/*if(Network.isClient)
 			this.networkView.RPC ("canInstantiate",RPCMode.Server);*/
 		if(Network.isClient){
-			this.networkView.RPC("connected",RPCMode.Server);
+			this.GetComponent<NetworkView>().RPC("connected",RPCMode.Server);
 		}
 
 	}
@@ -36,7 +36,7 @@ public class NetworkInGame : MonoBehaviour {
 		//Time.timeScale = 0;
 		if(Network.isServer && this.usersConnected >= 2 && this.instatiate){
 
-			this.networkView.RPC ("instantiateCharacter",RPCMode.AllBuffered);
+			this.GetComponent<NetworkView>().RPC ("instantiateCharacter",RPCMode.AllBuffered);
 
 			this.instatiate = false;
 		}

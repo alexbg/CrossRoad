@@ -12,9 +12,9 @@ public class GetObjects : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if(Physics.Raycast(this.transform.position,this.transform.forward,out hit,6f)){
+		/*if(Physics.Raycast(this.transform.position,this.transform.forward,out hit,6f)){
 			Debug.Log (hit.transform.name);
-		}
+		}*/
 
 	}
 }

@@ -14,7 +14,7 @@ public class testPhycisc : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		this.rigidbody.AddForce (Vector3.right * 1 , ForceMode.Force);
-		Debug.Log (this.rigidbody.velocity.magnitude);
+		this.GetComponent<Rigidbody>().AddForce (Vector3.right * 1 , ForceMode.Force);
+		Debug.Log (this.GetComponent<Rigidbody>().velocity.magnitude);
 	}
 }

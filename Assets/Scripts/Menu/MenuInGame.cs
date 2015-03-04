@@ -34,11 +34,11 @@ namespace CrossRoad.Menu{
 				if(this.pause){
 					this.changeActions(true,1.0f);
 					this.canvasWinner.SetActive(false);
-					Screen.showCursor = false;
+					Cursor.visible = false;
 				}else{
 					this.changeActions(false,0);
 					this.canvasWinner.SetActive(true);
-					Screen.showCursor = true;
+					Cursor.visible = true;
 				}
 				togglePause();
 				//Debug.Log(pause);

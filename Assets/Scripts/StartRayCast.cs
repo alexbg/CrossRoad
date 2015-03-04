@@ -16,7 +16,7 @@ public class StartRayCast : MonoBehaviour {
 	void Update () {;
 		if(Physics.Raycast(this.transform.position, -transform.right,out info, 9.0f) && this.send){
 			this.menu.SendMessage("winner");
-			Screen.showCursor = true;
+			Cursor.visible = true;
 			this.send = false;
 		}
 	}

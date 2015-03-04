@@ -42,7 +42,7 @@ namespace CrossRoad.Character{
 		//private bool moving;
 		// Use this for initialization
 		void Start () {
-			Screen.showCursor = false;
+			Cursor.visible = false;
 			this.fieldOfView = 60;
 			this.maxWalk = 3;
 			this.maxRun = 5;
@@ -89,7 +89,7 @@ namespace CrossRoad.Character{
 					this.canJump = true;
 					// Para que no haya problemas con la velocidad, se pone a 0 la velocidad de caida cuando
 					// el raycast toca el objeto con el que choca
-					this.rigidbody.velocity = new Vector3(this.rigidbody.velocity.x,0,this.rigidbody.velocity.z);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x,0,this.GetComponent<Rigidbody>().velocity.z);
 				}
 			}
 			
@@ -128,7 +128,7 @@ namespace CrossRoad.Character{
 			// que no va segun los frames. De esta forma solo le impulsa una vez
 			if(this.energy.value >=20){
 				if((Input.GetButton ("JumpPlayer1") || Input.GetAxis("JumpPlayer1") > 0) && this.canJump && !this.isTired){
-					this.rigidbody.AddForce(transform.up * this.forceJump,ForceMode.Impulse);
+					this.GetComponent<Rigidbody>().AddForce(transform.up * this.forceJump,ForceMode.Impulse);
 					this.energy.value -= 20;
 					this.canJump = false;
 					// Apaga la animacion de la linterna cuando esta saltando
@@ -152,8 +152,8 @@ namespace CrossRoad.Character{
 
 			// Movimiento vertical la z
 			if(/*Input.GetButton("Vertical") && */this.canJump){
-				this.rigidbody.AddForce(transform.forward * this.force * Input.GetAxis("VerticalPlayer1"),ForceMode.Acceleration);
-				this.rigidbody.AddForce(transform.right * this.force * Input.GetAxis("HorizontalPlayer1"),ForceMode.Acceleration);
+				this.GetComponent<Rigidbody>().AddForce(transform.forward * this.force * Input.GetAxis("VerticalPlayer1"),ForceMode.Acceleration);
+				this.GetComponent<Rigidbody>().AddForce(transform.right * this.force * Input.GetAxis("HorizontalPlayer1"),ForceMode.Acceleration);
 			}
 			
 			// Movimiento horizontal la x
@@ -162,8 +162,8 @@ namespace CrossRoad.Character{
 			}
 			
 			// Controla la velocidad
-			if(this.rigidbody.velocity.magnitude > this.maxVelocity && this.canJump){
-				this.rigidbody.velocity = this.rigidbody.velocity.normalized * this.maxVelocity;
+			if(this.GetComponent<Rigidbody>().velocity.magnitude > this.maxVelocity && this.canJump){
+				this.GetComponent<Rigidbody>().velocity = this.GetComponent<Rigidbody>().velocity.normalized * this.maxVelocity;
 			}
 			
 			
@@ -180,14 +180,14 @@ namespace CrossRoad.Character{
 			Debug.Log ("Ha colisionado con el personaje No trigger:" + info.collider.tag);
 			switch(info.collider.tag){
 			case "Ball":
-				this.rigidbody.freezeRotation = false;
+				this.GetComponent<Rigidbody>().freezeRotation = false;
 				/*this.loserText.SetActive(true);
 					this.headSound.Stop();*/
 				this.genericActionsCollision();
 				break;
 				
 			case "Tree":
-				this.rigidbody.freezeRotation = false;
+				this.GetComponent<Rigidbody>().freezeRotation = false;
 				/*this.loserText.SetActive(true);
 					this.headSound.Stop();*/
 				this.genericActionsCollision();
@@ -201,7 +201,7 @@ namespace CrossRoad.Character{
 		
 		void OnTriggerEnter(Collider info){
 			Debug.Log ("Ha colisionado con el personaje Trigger:" + info.transform.tag);
-			switch(info.collider.tag){
+			switch(info.GetComponent<Collider>().tag){
 				// Trampoline y explosion no modifican la freezeRotation, porque ya lo hace la trampa
 				// Ya que son "explosiones" y lo modifican antes de afectarle
 			case "Trampoline":
@@ -215,16 +215,16 @@ namespace CrossRoad.Character{
 				this.genericActionsCollision();
 				break;
 			case "Spike":
-				this.rigidbody.freezeRotation = false;
+				this.GetComponent<Rigidbody>().freezeRotation = false;
 				//this.loserText.SetActive(true);
-				this.rigidbody.isKinematic = true;
+				this.GetComponent<Rigidbody>().isKinematic = true;
 				//this.headSound.Stop();
 				this.genericActionsCollision();
 				break;
 			case "Monster":
-				this.rigidbody.freezeRotation = false;
+				this.GetComponent<Rigidbody>().freezeRotation = false;
 				// Lo impulsa para que se caiga cuando le golpea el monstruo
-				this.rigidbody.AddForce(transform.forward,ForceMode.Impulse);
+				this.GetComponent<Rigidbody>().AddForce(transform.forward,ForceMode.Impulse);
 				this.genericActionsCollision();
 				break;
 			}
@@ -250,7 +250,7 @@ namespace CrossRoad.Character{
 			Time.timeScale = 0;
 			this.mouseHead.enabled = false;
 			this.mouseCharacter.enabled = false;
-			Screen.showCursor = true;
+			Cursor.visible = true;
 			soundMultiplayer.stopSound(2,1);
 		}
 		
@@ -262,7 +262,7 @@ namespace CrossRoad.Character{
 		}*/
 		
 		void OnDisable() {
-			this.audio.Stop();
+			this.GetComponent<AudioSource>().Stop();
 		}
 	}
 }

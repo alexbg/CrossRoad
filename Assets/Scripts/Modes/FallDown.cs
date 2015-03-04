@@ -31,13 +31,13 @@ public class FallDown : MonoBehaviour {
 			if(this.time >= 4 && this.objectToFall < this.objects.Length){
 				Debug.Log (this.objects[this.objectToFall]);
 				this.time = 0;
-				this.objects[this.objectToFall].rigidbody.isKinematic = false;
+				this.objects[this.objectToFall].GetComponent<Rigidbody>().isKinematic = false;
 				this.rigidbodies = this.objects[this.objectToFall].GetComponentsInChildren<Rigidbody>();
 				foreach(Rigidbody rigidbody in this.rigidbodies ){
 					rigidbody.isKinematic = false;
 				}
 				// Hay que darle un toque para que se caiga despues de quitarle el kinematic
-				this.objects[this.objectToFall].rigidbody.AddForce(-transform.up,ForceMode.Impulse);
+				this.objects[this.objectToFall].GetComponent<Rigidbody>().AddForce(-transform.up,ForceMode.Impulse);
 				this.objectToFall++;
 			}
 		//}

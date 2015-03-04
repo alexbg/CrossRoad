@@ -26,8 +26,8 @@ public class Lamps : MonoBehaviour {
 			this.fire.Play();
 			this.light.enabled = true;
 			if(!PositionCharacter.multiplayer)
-				this.audio.Play();
-			this.torch.renderer.enabled = true;
+				this.GetComponent<AudioSource>().Play();
+			this.torch.GetComponent<Renderer>().enabled = true;
 		}
 
 	}

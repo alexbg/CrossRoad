@@ -6,7 +6,7 @@ public class IsMyInstantiate : MonoBehaviour {
 	public GameObject mainCamera;
 	// Use this for initialization
 	void Start () {
-		if(!this.networkView.isMine){
+		if(!this.GetComponent<NetworkView>().isMine){
 			// Elimino los componentes que no necesito
 			//Destroy (this.GetComponent<MouseLook>());
 			Destroy (this.GetComponent<MoveCharacter>());

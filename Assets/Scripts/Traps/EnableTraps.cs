@@ -17,8 +17,8 @@ public class EnableTraps : MonoBehaviour {
 		//this.isEnable = true;
 		if(Random.value > 0.4){
 			this.isEnable = true;
-			this.collider.enabled = true;
-			this.renderer.enabled = true;
+			this.GetComponent<Collider>().enabled = true;
+			this.GetComponent<Renderer>().enabled = true;
 		}
 		// Obtiene el EmitSoundsMultiplayer que esta en el objeto AudioListener
 		// que es el que se encarga ed los sonidos en multiplayer
@@ -54,7 +54,7 @@ public class EnableTraps : MonoBehaviour {
 		if (this.isEnable && (info.tag == "Player" || info.tag == "Player2")) {
 			switch(this.trap.tag){
 				case "Ball":
-					trap.rigidbody.isKinematic = false;
+					trap.GetComponent<Rigidbody>().isKinematic = false;
 					if(!PositionCharacter.multiplayer)
 						this.genericTrapsActions();
 					else
@@ -63,8 +63,8 @@ public class EnableTraps : MonoBehaviour {
 					break;
 
 				case "Trampoline":
-					info.rigidbody.freezeRotation = false;
-					info.rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
+					info.GetComponent<Rigidbody>().freezeRotation = false;
+					info.GetComponent<Rigidbody>().AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);
 					
 					if(!PositionCharacter.multiplayer)
 						this.genericTrapsActions();
@@ -76,7 +76,7 @@ public class EnableTraps : MonoBehaviour {
 				case "Tree":
 					Debug.Log ("Ha entrado en el Tree");
 					//trap.rigidbody.isKinematic = false; // No funciona bien 
-					trap.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+					trap.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 					if(!PositionCharacter.multiplayer)
 						this.genericTrapsActions();
 					else
@@ -89,9 +89,9 @@ public class EnableTraps : MonoBehaviour {
 					Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 5f);
 					int i = 0;
 					while (i < hitColliders.Length) {
-						if(hitColliders[i].rigidbody){
-							hitColliders[i].rigidbody.freezeRotation = false;
-							hitColliders[i].rigidbody.AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);	
+						if(hitColliders[i].GetComponent<Rigidbody>()){
+							hitColliders[i].GetComponent<Rigidbody>().freezeRotation = false;
+							hitColliders[i].GetComponent<Rigidbody>().AddExplosionForce(40.0f,transform.position,10.0f,5.0f,ForceMode.Impulse);	
 						}
 						i++;
 					}
@@ -124,7 +124,7 @@ public class EnableTraps : MonoBehaviour {
 			if(global)
 				this.globalSound.Play();
 			else
-				this.audio.Play();
+				this.GetComponent<AudioSource>().Play();
 		// No los destruyo porque si no, no se emite el sonido	
 		this.isEnable = false;
 

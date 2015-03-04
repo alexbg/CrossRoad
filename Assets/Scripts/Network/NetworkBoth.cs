@@ -50,22 +50,22 @@ public class NetworkBoth : MonoBehaviour {
 		Debug.Log ("I am ready");
 		this.ready++;
 		this.textReady.text = this.ready.ToString ();
-		this.networkView.RPC ("getReady", RPCMode.Others);
+		this.GetComponent<NetworkView>().RPC ("getReady", RPCMode.Others);
 	}
 
 	public void imNotReady(){
 		this.ready--;
 		this.textReady.text = this.ready.ToString ();
-		this.networkView.RPC ("getNotReady", RPCMode.Others);
+		this.GetComponent<NetworkView>().RPC ("getNotReady", RPCMode.Others);
 	}
 
 	public void sentGameMode(int mode){
-		this.networkView.RPC ("getGameMode", RPCMode.Others, mode);
+		this.GetComponent<NetworkView>().RPC ("getGameMode", RPCMode.Others, mode);
 	}
 
 	public void sendMessageToChat(){
 		Debug.Log ("Enviado al chat");
-		this.networkView.RPC("sendMessage",RPCMode.All,this.textInputChat.text,PlayerPrefs.GetString("username"));
+		this.GetComponent<NetworkView>().RPC("sendMessage",RPCMode.All,this.textInputChat.text,PlayerPrefs.GetString("username"));
 	}
 
 	// Mensajes
@@ -137,7 +137,7 @@ public class NetworkBoth : MonoBehaviour {
 	public void loadLevelByNetwork(int level){
 		Application.LoadLevel (level);
 		if(Network.isServer){
-			this.networkView.RPC ("loadLevelByNetwork",RPCMode.OthersBuffered,level);
+			this.GetComponent<NetworkView>().RPC ("loadLevelByNetwork",RPCMode.OthersBuffered,level);
 			// Paro la red y nadie puede recibir ningun RPC
 			Network.isMessageQueueRunning = false;
 		}
@@ -180,13 +180,13 @@ public class NetworkBoth : MonoBehaviour {
 		this.players++;
 		this.numberOfPlayers.text = this.players.ToString ();
 		// envio a todos los usuarios conectados
-		this.networkView.RPC ("getNumberOfPlayers", RPCMode.Others, this.players);
+		this.GetComponent<NetworkView>().RPC ("getNumberOfPlayers", RPCMode.Others, this.players);
 		// envio al usuario conectado su ping
-		this.networkView.RPC ("getPing", player,Network.GetAveragePing(player));
+		this.GetComponent<NetworkView>().RPC ("getPing", player,Network.GetAveragePing(player));
 		// envio los usuarios que ya estan listos
-		this.networkView.RPC ("getReadyPlayers", player, this.ready);
+		this.GetComponent<NetworkView>().RPC ("getReadyPlayers", player, this.ready);
 		// Le envio su posicion en el juego
-		this.networkView.RPC ("getMyPosition", player,this.players);
+		this.GetComponent<NetworkView>().RPC ("getMyPosition", player,this.players);
 		//Debug.Log ("Mi posicion es: " + PlayerPrefs.GetString("position"));
 	}
 	
@@ -196,9 +196,9 @@ public class NetworkBoth : MonoBehaviour {
 		this.ready--;
 		this.numberOfPlayers.text = this.players.ToString ();
 		// Obtiene el numero de jugadores
-		this.networkView.RPC ("getNumberOfPlayers", RPCMode.Others, this.players);
+		this.GetComponent<NetworkView>().RPC ("getNumberOfPlayers", RPCMode.Others, this.players);
 		// envio los usuarios que ya estan listos
-		this.networkView.RPC ("getReadyPlayers", player, this.ready);
+		this.GetComponent<NetworkView>().RPC ("getReadyPlayers", player, this.ready);
 	}
 
 	// Cuando falla al intentar conectarse con el servidor
