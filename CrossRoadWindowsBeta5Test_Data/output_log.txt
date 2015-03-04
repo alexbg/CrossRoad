@@ -16,7 +16,7 @@ Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta5Test_Data\Managed\
 Loading E:\projects\CrossRoad\CrossRoadWindowsBeta5Test_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: E:\projects\CrossRoad\CrossRoadWindowsBeta5Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading E:\projects\CrossRoad\CrossRoadWindowsBeta5Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.065 seconds
+- Completed reload, in  0.062 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -36,10 +36,22 @@ players 1
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.161783 ms
+UnloadTime: 5.005937 ms
+Configurando los controles Jump
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
 
 Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1433.
-Total: 0.770267 ms (FindLiveObjects: 0.131844 ms CreateObjectMapping: 0.079682 ms MarkObjects: 0.462736 ms  DeleteObjects: 0.095363 ms)
+Total: 0.922592 ms (FindLiveObjects: 0.144965 ms CreateObjectMapping: 0.085443 ms MarkObjects: 0.589460 ms  DeleteObjects: 0.101443 ms)
+
+Es false, va vertical y gira a la izquierda
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+System.String[]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 1
  
@@ -49,33 +61,9 @@ Ha elegido modo normal
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
-Es true, va vertical y gira a la derecha
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-Es true, va -horizontal y gira a la izquierda
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-Colision con:Tree
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-Ha entrado en el Tree
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-Ha colisionado con el personaje Trigger:Untagged
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-Se ha pulsado el boton escape
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
 Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.815424 ms
+UnloadTime: 2.007431 ms
 
-Unloading 758 unused Assets to reduce memory usage. Loaded Objects now: 887.
-Total: 1.348527 ms (FindLiveObjects: 0.136004 ms CreateObjectMapping: 0.075202 ms MarkObjects: 0.588180 ms  DeleteObjects: 0.548179 ms)
+Unloading 758 unused Assets to reduce memory usage. Loaded Objects now: 886.
+Total: 1.248364 ms (FindLiveObjects: 0.119044 ms CreateObjectMapping: 0.081602 ms MarkObjects: 0.542419 ms  DeleteObjects: 0.504337 ms)
 

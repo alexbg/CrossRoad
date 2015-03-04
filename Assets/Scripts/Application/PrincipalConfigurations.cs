@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace CrossRoad.Principal{
 
 	public class PrincipalConfigurations : MonoBehaviour {
 
-		void Start(){
-			//PlayerPrefs.DeleteAll ();
-			//PlayerPrefs.SetString("username","Pepe");
-			//PlayerPrefs.Save ();
-			//Debug.Log (Input.GetJoystickNames ()[0]);
+
+
+		/*void Awake(){
+
 		}
+
+		void Start(){
+
+		}*/
 
 		void OnLevelWasLoaded(int level) {
 			Time.timeScale = 1.0f;

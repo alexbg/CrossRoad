@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
+using CrossRoad.Principal;
 
 namespace CrossRoad.Character{
 
@@ -34,7 +36,16 @@ namespace CrossRoad.Character{
 		private bool isTired;//
 		private float maxVelocity;//
 		private RaycastHit info; //
-		public AudioSource headSound;// 
+		public AudioSource headSound;//
+
+		// Controllers
+		// Guarda el nombre de los controllers
+		private string[] controllers;
+		// El nombre del jugador para los controllers
+		// Esta: principal, player1, player2
+		public string player;
+
+		public ConfigControllers configControllers;
 
 		// Use this for initialization
 		void Start () {
@@ -48,9 +59,8 @@ namespace CrossRoad.Character{
 			this.isDead = false;
 			this.isRunning = false;
 			this.isWalking = false;
-
-			//this.animation.Stop ();
-			//Physics.IgnoreCollision (this.ignoreCollision.collider, this.collider);
+			this.controllers = configControllers.getControllers(this.player);
+			Debug.Log (this.controllers);
 		}
 		
 		// Update is called once per frame
@@ -77,7 +87,7 @@ namespace CrossRoad.Character{
 			// controla la barra de energia
 			// Si se gasta, esta corriendo
 			// En caso contrario esta caminando
-			if((Input.GetButton("Run") || Input.GetAxis("Run") > 0 ) && !this.isTired && !this.isDead){
+			if((Input.GetButton(this.controllers[3]) || Input.GetAxis(this.controllers[3]) > 0 ) && !this.isTired && !this.isDead){
 				this.energy.value -= 20 * Time.deltaTime;
 				this.isRunning = true;
 			}else{
@@ -102,6 +112,7 @@ namespace CrossRoad.Character{
 
 			// Control de velocidad y de la fieldOfView de la camara
 			// El maximo fieldOfView es 60, se cambia en la variable fieldOfView
+			// CANSADO
 			if(this.isTired){
 				this.maxVelocity = this.maxWalkTired;
 				this.lightController.SetBool("isTired",true);
@@ -110,7 +121,7 @@ namespace CrossRoad.Character{
 					Camera.main.fieldOfView += 10 * Time.deltaTime;
 				this.GetComponent<AudioSource>().pitch = 0.9f;
 				this.changeStateOfMove(2);
-
+			// CORRIENDO
 			}else if(this.isRunning){
 				//this.isRunning = true;
 				if(this.isRunning){
@@ -125,7 +136,7 @@ namespace CrossRoad.Character{
 					this.GetComponent<AudioSource>().pitch = 1.3f;
 					this.changeStateOfMove(1);
 				}
-
+			// CAMINANDO
 			}else if(this.isWalking){
 
 				this.maxVelocity = this.maxWalk;
@@ -141,7 +152,7 @@ namespace CrossRoad.Character{
 			// si se pone en FixedUpdate le da mucho mas impulso, por las repeticiones de la propia funcion
 			// que no va segun los frames. De esta forma solo le impulsa una vez
 			if(this.energy.value >=20){
-				if((Input.GetButton ("Jump") || Input.GetAxis("Jump") > 0) && this.canJump && !this.isTired){
+				if((Input.GetButton (this.controllers[2]) || Input.GetAxis(this.controllers[2]) > 0) && this.canJump && !this.isTired){
 					this.GetComponent<Rigidbody>().AddForce(transform.up * this.forceJump,ForceMode.Impulse);
 					this.energy.value -= 20;
 					this.canJump = false;
@@ -151,21 +162,21 @@ namespace CrossRoad.Character{
 			}
 
 			// Input.GetAxis("Vertical") y Input.GetAxis("Horizontal") se utilizan tanto con el joystick como con el teclado
-			if((Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) && this.canJump){
+			if((Input.GetAxis(this.controllers[1]) != 0 || Input.GetAxis(this.controllers[0]) != 0) && this.canJump){
 				if(!this.GetComponent<AudioSource>().isPlaying)
 					this.GetComponent<AudioSource>().Play();
 			}else{
 				this.GetComponent<AudioSource>().Stop();
 			}
-			Debug.Log (this.GetComponent<Rigidbody>().velocity.magnitude);
+			//Debug.Log (this.GetComponent<Rigidbody>().velocity.magnitude);
 		}
 
 		void FixedUpdate(){
 
 			// Movimiento vertical la z y horizontal la x
 			if(this.canJump){
-				this.GetComponent<Rigidbody>().AddForce(transform.forward * this.force * Input.GetAxis("Vertical"),ForceMode.Acceleration);
-				this.GetComponent<Rigidbody>().AddForce(transform.right * this.force * Input.GetAxis("Horizontal"),ForceMode.Acceleration);
+				this.GetComponent<Rigidbody>().AddForce(transform.forward * this.force * Input.GetAxis(this.controllers[1]),ForceMode.Acceleration);
+				this.GetComponent<Rigidbody>().AddForce(transform.right * this.force * Input.GetAxis(this.controllers[0]),ForceMode.Acceleration);
 			}
 
 			// Controla la velocidad
