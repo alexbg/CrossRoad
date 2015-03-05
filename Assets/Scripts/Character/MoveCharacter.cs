@@ -59,6 +59,7 @@ namespace CrossRoad.Character{
 			this.isDead = false;
 			this.isRunning = false;
 			this.isWalking = false;
+			// Obtengo los controles de este jugador
 			this.controllers = configControllers.getControllers(this.player);
 			Debug.Log (this.controllers);
 		}

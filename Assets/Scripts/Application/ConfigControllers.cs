@@ -61,6 +61,13 @@ public class ConfigControllers : MonoBehaviour {
 			case "principal":
 				players =  this.principal;
 				break;
+			case "player1":
+				players = this.player1;
+				break;
+			case "player2":
+				players = this.player2;
+				break;
+
 		}
 		return players;
 	}

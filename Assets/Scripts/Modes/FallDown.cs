@@ -37,7 +37,7 @@ public class FallDown : MonoBehaviour {
 					rigidbody.isKinematic = false;
 				}
 				// Hay que darle un toque para que se caiga despues de quitarle el kinematic
-				this.objects[this.objectToFall].GetComponent<Rigidbody>().AddForce(-transform.up,ForceMode.Impulse);
+				this.objects[this.objectToFall].GetComponent<Rigidbody>().AddForce(-transform.up * 3,ForceMode.Impulse);
 				this.objectToFall++;
 			}
 		//}
