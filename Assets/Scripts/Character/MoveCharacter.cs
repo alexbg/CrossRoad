@@ -105,7 +105,7 @@ namespace CrossRoad.Character{
 					this.canJump = true;
 					// Para que no haya problemas con la velocidad, se pone a 0 la velocidad de caida cuando
 					// el raycast toca el objeto con el que choca
-					//this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x,0,this.GetComponent<Rigidbody>().velocity.z);
+					this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x,0,this.GetComponent<Rigidbody>().velocity.z);
 				//}
 			}else{
 				this.canJump = false;

@@ -21,7 +21,7 @@ public class PositionCharacter : MonoBehaviour {
 
 	void Start () {
 
-		PlayerPrefs.SetInt ("players", 1);
+		//PlayerPrefs.SetInt ("players", 2);
 		Debug.Log (PlayerPrefs.GetInt ("players"));
 		// configuracion multijugador offline
 		if(PlayerPrefs.GetInt("players") != 1){
