@@ -10,7 +10,7 @@ public class IAmClient : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Network.isClient)
-			this.gameObject.SetActive(false);
+		/*if(Network.isClient)
+			this.gameObject.SetActive(false);*/
 	}
 }

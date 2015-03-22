@@ -175,7 +175,7 @@ public class NetworkBoth : MonoBehaviour {
 	}
 
 	// Cuando se conecta un usuario al servidor
-	void OnPlayerConnected(NetworkPlayer player){
+	/*void OnPlayerConnected(NetworkPlayer player){
 		Debug.Log ("Un jugador se ha conectado");
 		this.players++;
 		this.numberOfPlayers.text = this.players.ToString ();
@@ -214,5 +214,5 @@ public class NetworkBoth : MonoBehaviour {
 	// Cuando te desconectas del server, tanto como servidor como cliente
 	void OnDisconnectedFromServer(NetworkDisconnection info){
 		Debug.Log ("Te has desconectado del servidor");
-	}
+	}*/
 }

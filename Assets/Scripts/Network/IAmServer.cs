@@ -10,7 +10,7 @@ public class IAmServer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Network.isServer)
-			this.gameObject.SetActive (false);
+		/*if (Network.isServer)
+			this.gameObject.SetActive (false);*/
 	}
 }
