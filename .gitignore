@@ -3,10 +3,8 @@
 #################
 
 
-/Library
-/Pictures
-/copia
-/Betas
+copia/
+Betas/
 *.kra
 
 [Ll]ibrary/
